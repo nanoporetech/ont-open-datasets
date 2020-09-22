@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Oxford Nanopore Technologies Open Datasets]]></title><description><![CDATA[Discover Open Datasets provided by Oxford Nanopore Technologies.]]></description><link>https://nanoporetech.github.io/ont-open-datasets</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 22 Sep 2020 14:59:29 GMT</lastBuildDate><item><title><![CDATA[GM24385 Dataset Release]]></title><description><![CDATA[We are happy to annouce the release of a Nanopore sequencing dataset
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Oxford Nanopore Technologies Open Datasets]]></title><description><![CDATA[Discover Open Datasets provided by Oxford Nanopore Technologies.]]></description><link>https://nanoporetech.github.io/ont-open-datasets</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 22 Sep 2020 16:04:34 GMT</lastBuildDate><item><title><![CDATA[GM24385 Dataset Release]]></title><description><![CDATA[We are happy to annouce the release of a Nanopore sequencing dataset
 of the Genome in a Bottle sample GM24385. Multiple PromethION flowcells…]]></description><link>https://nanoporetech.github.io/ont-open-datasets/gm24385_2020.09/</link><guid isPermaLink="false">https://nanoporetech.github.io/ont-open-datasets/gm24385_2020.09/</guid><pubDate>Tue, 22 Sep 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;We are happy to annouce the release of a Nanopore sequencing dataset
 of the Genome in a Bottle sample GM24385.&lt;/p&gt;
 &lt;p&gt;Multiple PromethION flowcells using both the R9.4.1 and R10.3 nanopores.
@@ -42,4 +42,12 @@ datasets within the Open Datasets project.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;&lt;em&gt;How can I access the data?&lt;/em&gt;&lt;/strong&gt;
 TODO&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;&lt;em&gt;How can I recreate the analysis directories?&lt;/em&gt;&lt;/strong&gt;
-TODO&lt;/p&gt;</content:encoded></item></channel></rss>
+TODO&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Running workflows using ONT’s EPI2ME platform&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Oxford Nanopore’s &lt;a href=&quot;https://epi2me.nanoporetech.com/&quot;&gt;EPI2ME&lt;/a&gt;
+platform includes several workflows for analysing
+genomics datasets in the cloud with Amazon Web Services, reducing the
+computational burden on the users local compute infrastructure.
+For example, the &lt;a href=&quot;https://community.nanoporetech.com/protocols/epi2me/v/mte_1014_v1_revba_11apr2016/human-alignment-grch38&quot;&gt;FASTQ Human Alignment GRCh38&lt;/a&gt;
+can be used to perform alignment of nanopore sequencing reads to
+the human reference genome to obtain industry standard BAM file outputs.&lt;/p&gt;</content:encoded></item></channel></rss>
