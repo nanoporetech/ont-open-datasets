@@ -2,6 +2,11 @@
 title: GM24385 Dataset Release
 date: "2020-09-22T00:00:00.000Z"
 description: "Announcing the release of a GM24385 Dataset"
+tags:
+  - datasets
+  - human cell-line
+  - R10.3
+  - R9.4.1
 ---
 
 We are happy to annouce the release of a Nanopore sequencing dataset
@@ -13,9 +18,11 @@ The direct sequencer output is included, raw signal data stored in
 analyses are included, notably alignments of sequence data to the
 reference genome are provided along with statistics derived from these.
 
-> The following cell lines/DNA samples were obtained from the NIGMS Human
+<Pullquote>
+The following cell lines/DNA samples were obtained from the NIGMS Human
 Genetic Cell Repository at the Coriell Institute for Medical Research:
 GM24385.
+</Pullquote>
 
 ***Whats included?***
 
@@ -35,6 +42,8 @@ TODO.
 The data is located in an Amazon Webservice S3 bucket at:
 
     s3://ont-open-data/gm24385_2020.09/
+
+See the [tutorials](/tutorials/) page for information on downloading the dataset.
 
 ***Description of available data***
 
