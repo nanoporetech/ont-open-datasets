@@ -14,9 +14,8 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '12'
-      - name: Build site
-          uses: jzweifel/gatsby-cli-github-action@master
-          env:
-            GATSBY_PROJECT_PATH: "./gh-pages/ont-open-datasets/ont-open-datasets-site/"
-          with:
-            gatsby-arg: build
+      - name: Install deps
+        run: |
+          npm install -g gatsby
+          cd gh-pages/ont-open-datasets/ont-open-datasets-site
+          gatsby build
