@@ -30,7 +30,7 @@ jobs:
           gatsby build --prefix-paths
       - name: Move files
         run: |
-          cp -r master/public/* gh-pages
+          cp -r master/public/* gh-pages/
       - name: Commit updated site static build
         run: |
           cd gh-pages
