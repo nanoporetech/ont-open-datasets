@@ -1,7 +1,7 @@
 ---
 title: ONT Open Datasets Launch
 date: "2020-09-22T00:00:00.000Z"
-description: "Launch note"
+description: "Welcome message."
 ---
 
 The ont-open-data registry provides reference sequencing data from Oxford

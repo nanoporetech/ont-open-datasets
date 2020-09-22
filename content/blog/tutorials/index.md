@@ -1,7 +1,10 @@
 ---
 title: ONT Open Datasets Tutorials
-date: "2020-09-22T00:00:00.000Z"
-description: "Tutorial links and descriptions"
+date: "2020-09-22T00:01:00.000Z"
+description: "Introduction to obtaining and using the available datasets."
+tags
+ - tutorials
+ - downloads
 ---
 
 Below you will find helpful information and links out to tutorials for

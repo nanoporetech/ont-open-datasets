@@ -1,7 +1,7 @@
 ---
 title: GM24385 Dataset Release
-date: "2020-09-22T00:00:00.000Z"
-description: "Announcing the release of a GM24385 Dataset"
+date: "2020-09-22T00:03:00.000Z"
+description: "Announcing the release of a GM24385 (GIAB HG002) dataset."
 tags:
   - datasets
   - human cell-line
