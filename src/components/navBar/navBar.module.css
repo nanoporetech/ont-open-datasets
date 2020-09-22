@@ -1,0 +1,39 @@
+.navBar {
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  background-color: #115571;
+}
+
+.navBarLogo {
+  width: 50%;
+}
+
+.navBarLogo img {
+  width: auto;
+  height: 100%;
+  padding: 15px;
+}
+
+.navBarLinks {
+  height: 100%;
+  display: flex;
+  align-content: center;
+  flex-wrap: wrap;
+}
+
+.navBarLinks ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.navBarLinks ul li {
+  margin: 0;
+  padding: 0 25px;
+}
+
+.navBarLinks ul li a {
+  color: white;
+  text-decoration: none;
+}
