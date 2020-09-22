@@ -1,7 +1,7 @@
 module.exports = {
   pathPrefix: `/ont-open-datasets`,
   siteMetadata: {
-    title: `Gatsby Starter Blog`,
+    title: `Oxford Nanopore Technologies Open Datasets`,
     author: {
       name: `Oxford Nanopore Technologies`,
       summary: `Nanopores for direct DNA/RNA analysis: MinION, PromethION, GridION, VolTRAX. Products are for Research Use Only.`,
