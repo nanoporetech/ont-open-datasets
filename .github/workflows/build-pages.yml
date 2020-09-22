@@ -1,0 +1,42 @@
+name: Build pages
+on: push
+jobs:
+  build:
+    name: Build pages with gatsby
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout master branch
+        uses: actions/checkout@v2
+        with:
+          ref: master
+          path: master
+      - name: Checkout gh-pages branch
+        uses: actions/checkout@v2
+        with:
+          ref: gh-pages
+          path: gh-pages
+      - name: Install Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12'
+      - name: Install deps
+        run: |
+          npm install -g gatsby-cli
+          cd master
+          npm i
+      - name: Build site
+        run: |
+          cd master
+          gatsby build --prefix-paths
+      - name: Move files
+        run: |
+          cp -r master/public/* gh-pages
+      - name: Commit updated site static build
+        run: |
+          cd gh-pages
+          git branch
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git status
+          echo `git commit -m "Rebuilt gh-pages" && git push`
