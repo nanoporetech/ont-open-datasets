@@ -16,3 +16,26 @@ reference genome are provided along with statistics derived from these.
 > The following cell lines/DNA samples were obtained from the NIGMS Human
 Genetic Cell Repository at the Coriell Institute for Medical Research:
 GM24385.
+
+***Whats included?***
+
+The dataset comprises multiple R9.4.1 and R10.3 flowcells of multiple
+separately prepared samples; each sample was run on each flowcell type.
+
+The initial sequencer outputs are included in self container directories.
+In addition derived outputs from an automated pipeline are stored
+separately.
+
+***Details concerning sample preparations***
+
+TODO.
+
+***Location of the data***
+
+The data is located in an Amazon Webservice S3 bucket at:
+
+    s3://ont-open-data/gm24385_2020.09/
+
+***Description of available data***
+
+TODO
