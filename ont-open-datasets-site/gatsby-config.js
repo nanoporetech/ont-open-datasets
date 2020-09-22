@@ -1,4 +1,5 @@
 module.exports = {
+  pathPrefix: `/ont-open-datasets`,
   siteMetadata: {
     title: `Gatsby Starter Blog`,
     author: {
