@@ -27,4 +27,12 @@ jobs:
         run: |
           cd gh-pages
           mv ont-open-datasets-site/public/* ./
-          ls -la
+      - name: Commit updated site static build
+        run: |
+          cd gh-pages
+          git branch
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git status
+          echo `git commit -m "Rebuilt gh-pages" && git push`
