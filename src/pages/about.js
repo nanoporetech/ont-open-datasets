@@ -13,7 +13,10 @@ const AboutPage = ({ data, location }) => {
     <Layout location={location} title={siteTitle}>
       <SEO title="About" />
       <h1>About ONT Open Datasets</h1>
-      <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
+      <section
+        dangerouslySetInnerHTML={{ __html: data.markdownRemark?.html }}
+        itemProp="articleBody"
+      />
       <hr
         style={{
           marginBottom: rhythm(1),
@@ -27,7 +30,10 @@ const AboutPage = ({ data, location }) => {
 export default AboutPage
 
 export const pageQuery = graphql`
-  query {
+  query AboutPageQuery {
+    markdownRemark(fileAbsolutePath: { regex: "/about/" }) {
+      html
+    }
     site {
       siteMetadata {
         title

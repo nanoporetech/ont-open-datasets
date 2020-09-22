@@ -30,10 +30,12 @@ const NavBar = () => {
   return (
     <div className={styles.navBar}>
       <div className={styles.navBarLogo}>
-        <img
-          src={logo}
-          alt={author?.name || ``}
-        />
+        <a href="https://nanoporetech.com/">
+          <img
+            src={logo}
+            alt={author?.name || ``}
+          />
+        </a>
       </div>
 
       <div className={styles.navBarLinks}>
