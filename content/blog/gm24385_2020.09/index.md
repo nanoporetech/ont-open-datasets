@@ -18,11 +18,9 @@ The direct sequencer output is included, raw signal data stored in
 analyses are included, notably alignments of sequence data to the
 reference genome are provided along with statistics derived from these.
 
-<Pullquote>
-  The following cell lines/DNA samples were obtained from the NIGMS Human
-  Genetic Cell Repository at the Coriell Institute for Medical Research:
-  GM24385.
-</Pullquote>
+*The following cell lines/DNA samples were obtained from the NIGMS Human
+Genetic Cell Repository at the Coriell Institute for Medical Research:
+GM24385.*
 
 
 ***Whats included?***
