@@ -16,6 +16,7 @@ jobs:
           node-version: '12'
       - name: Install deps
         run: |
+          ls
           npm install -g gatsby
-          cd gh-pages/ont-open-datasets/ont-open-datasets-site
+          cd gh-pages/ont-open-datasets-site
           gatsby build
