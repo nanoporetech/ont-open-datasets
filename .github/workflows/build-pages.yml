@@ -28,7 +28,10 @@ jobs:
         run: |
           cd master
           gatsby build --prefix-paths
-      - name: Move files
+      - name: Clean gh-pages
+        run: |
+          rm -r gh-pages/*
+      - name: Copy files
         run: |
           cp -r master/public/* gh-pages/
       - name: Commit updated site static build
