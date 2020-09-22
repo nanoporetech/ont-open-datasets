@@ -4,7 +4,7 @@ module.exports = {
     title: `Oxford Nanopore Technologies Open Datasets`,
     author: {
       name: `Oxford Nanopore Technologies`,
-      summary: `Nanopores for direct DNA/RNA analysis: MinION, PromethION, GridION, VolTRAX. Products are for Research Use Only.`,
+      summary: `Providing nanopores for direct DNA/RNA analysis: MinION, PromethION, GridION, VolTRAX. Products are for Research Use Only.`,
     },
     description: `Discover Open Datasets provided by Oxford Nanopore Technologies.`,
     siteUrl: `https://nanoporetech.github.io/ont-open-datasets`,
@@ -61,7 +61,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Gatsby Starter Blog`,
+        name: `ONT Open Datasets`,
         short_name: `GatsbyJS`,
         start_url: `/`,
         background_color: `#ffffff`,
