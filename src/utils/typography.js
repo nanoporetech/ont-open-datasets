@@ -1,18 +1,19 @@
 import Typography from "typography"
 
-const typography = new Typography({
-  baseFontSize: "18px",
-  baseLineHeight: 1.666,
-  headerFontFamily: [
-    "Avenir Next",
+const fontFamily = [
     "Helvetica Neue",
     "Segoe UI",
     "Helvetica",
     "Arial",
     "sans-serif",
-  ],
-  bodyFontFamily: ["Georgia", "serif"],
-})
+];
+
+const typography = new Typography({
+  baseFontSize: "18px",
+  baseLineHeight: 1.666,
+  headerFontFamily: fontFamily,
+  bodyFontFamily: fontFamily,
+});
 
 // Hot reload typography in development.
 if (process.env.NODE_ENV !== `production`) {
