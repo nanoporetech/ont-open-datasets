@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Oxford Nanopore Technologies Open Datasets]]></title><description><![CDATA[Discover Open Datasets provided by Oxford Nanopore Technologies.]]></description><link>https://nanoporetech.github.io/ont-open-datasets</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 22 Sep 2020 14:53:06 GMT</lastBuildDate><item><title><![CDATA[GM24385 Dataset Release]]></title><description><![CDATA[We are happy to annouce the release of a Nanopore sequencing dataset
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Oxford Nanopore Technologies Open Datasets]]></title><description><![CDATA[Discover Open Datasets provided by Oxford Nanopore Technologies.]]></description><link>https://nanoporetech.github.io/ont-open-datasets</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 22 Sep 2020 14:59:29 GMT</lastBuildDate><item><title><![CDATA[GM24385 Dataset Release]]></title><description><![CDATA[We are happy to annouce the release of a Nanopore sequencing dataset
 of the Genome in a Bottle sample GM24385. Multiple PromethION flowcells…]]></description><link>https://nanoporetech.github.io/ont-open-datasets/gm24385_2020.09/</link><guid isPermaLink="false">https://nanoporetech.github.io/ont-open-datasets/gm24385_2020.09/</guid><pubDate>Tue, 22 Sep 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;We are happy to annouce the release of a Nanopore sequencing dataset
 of the Genome in a Bottle sample GM24385.&lt;/p&gt;
 &lt;p&gt;Multiple PromethION flowcells using both the R9.4.1 and R10.3 nanopores.
@@ -24,13 +24,22 @@ separately.&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;s3://ont-open-data/gm24385_2020.09/&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;strong&gt;&lt;em&gt;Description of available data&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;TODO&lt;/p&gt;</content:encoded></item><item><title><![CDATA[ONT Open Datasets Launch]]></title><description><![CDATA[The ont-open-data registry provides reference sequencing data from Oxford
-Nanopore Technologies to support, 1) Exploration of the…]]></description><link>https://nanoporetech.github.io/ont-open-datasets/launch_annouce/</link><guid isPermaLink="false">https://nanoporetech.github.io/ont-open-datasets/launch_annouce/</guid><pubDate>Tue, 22 Sep 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;The ont-open-data registry provides reference sequencing data from Oxford
-Nanopore Technologies to support, 1) Exploration of the characteristics of
-nanopore sequence data. 2) Assessment and reproduction of performance
-benchmarks 3) Development of tools and methods. The data deposited
-showcases DNA sequences from a representative subset of sequencing
-chemistries. The datasets correspond to publicly-available reference
-samples (e.g. GM24385 as reference human). Raw data are provided with
-metadata and scripts to describe sample and data provenance.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[ONT Open Datasets Tutorials]]></title><description><![CDATA[Below you will find helpful information and links out to tutorials for
-datasets within the Open Datasets project.]]></description><link>https://nanoporetech.github.io/ont-open-datasets/tutorials/</link><guid isPermaLink="false">https://nanoporetech.github.io/ont-open-datasets/tutorials/</guid><pubDate>Tue, 22 Sep 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Below you will find helpful information and links out to tutorials for
-datasets within the Open Datasets project.&lt;/p&gt;</content:encoded></item></channel></rss>
+Nanopore Technologies to support, Exploration of the…]]></description><link>https://nanoporetech.github.io/ont-open-datasets/launch_annouce/</link><guid isPermaLink="false">https://nanoporetech.github.io/ont-open-datasets/launch_annouce/</guid><pubDate>Tue, 22 Sep 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;The ont-open-data registry provides reference sequencing data from Oxford
+Nanopore Technologies to support,&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Exploration of the characteristics of
+nanopore sequence data,&lt;/li&gt;
+&lt;li&gt;Assessment and reproduction of performance
+benchmarks,&lt;/li&gt;
+&lt;li&gt;Development of tools and methods.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The data deposited showcases DNA sequences from a representative subset of
+sequencing chemistries. The datasets correspond to publicly-available reference
+samples (e.g. GM24385 as reference human). Raw data are provided with metadata
+and scripts to describe sample and data provenance.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[ONT Open Datasets Tutorials]]></title><description><![CDATA[Below you will find helpful information and links out to tutorials for
+datasets within the Open Datasets project. How can I access the data…]]></description><link>https://nanoporetech.github.io/ont-open-datasets/tutorials/</link><guid isPermaLink="false">https://nanoporetech.github.io/ont-open-datasets/tutorials/</guid><pubDate>Tue, 22 Sep 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Below you will find helpful information and links out to tutorials for
+datasets within the Open Datasets project.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;How can I access the data?&lt;/em&gt;&lt;/strong&gt;
+TODO&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;How can I recreate the analysis directories?&lt;/em&gt;&lt;/strong&gt;
+TODO&lt;/p&gt;</content:encoded></item></channel></rss>
