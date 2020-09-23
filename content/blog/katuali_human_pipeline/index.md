@@ -74,7 +74,7 @@ files.
 Katuali can be used to perform basecalling from `.fast5` files to produce
 standard `.fastq` sequence files. However since basecalling was performed
 during the sequencing experiments we can sidestep the basecalling procedure
-and simply bootstrap the Katuali output directory with the alread computed
+and simply bootstrap the Katuali output directory with the already computed
 basecalls. To do this the `setup_katuali.sh` program, located at:
 
     s3://ont-open-data/gm24385_2020.09/config/setup_katuali.sh
@@ -133,7 +133,91 @@ Katuali replaces the `{DATA}` and `{SPLIT_FAST5_REGIONS}` tags in the listings a
 all possible values listed in the `DATA` section of the configuration file. The resulting
 matrix of targets is given to Snakemake to perform the workflows.
 
-### Pipeline data flow
+### Pipeline data flow and output descriptions
+
+The filepath targets defined in the Katuali configuration files trigger
+Snakemake to perform all necessary calculations required to produce the
+requested files. Users interested in the Snakemake rules used to produce all
+files should consult the Katuali documentation and source files
+[here](https://github.com/nanoporetech/katuali/tree/master/katuali/data), which
+are grouped logically according to function.
+
+Katuali has for the most part a convention that outputs which are derived
+directly from an input (or previous intermediate output) are stored in a
+sub-directory of that previous input. This leads to a continued deepening of
+the directory structure. A benefit of this approach is the ability to
+recursively calculate new outputs of the same type without having to write
+multiple rules. Downside of the approach are that it is not always easy to see
+which items are the immediate outputs of an analysis stage and which are the
+outputs of subsequent stages. To aid users who do not wish to examine the
+Snakemake files included in Katuali, the directory listing below will aid
+comprehension.
+
+Katuali generically labels results of analysis stages using a
+`<stage>_<suffix>` form, for example in the below the top level
+`<guppy_v4.0.11_r10.3_hac_prom>` indicates results under this level
+are results of the Guppy basecaller using the settings specified
+in the Katuali configuration file under the tag `v4.0.11_r10.3_hac_prom`.
+Similarly `<align_unfiltered>` indicates results from the alignment
+rule generated using the `unfiltered` settings.
+    .
+    ├── guppy_v4.0.11_r10.3_hac_prom
+    │   ├── basecalls.fastq
+    │   ├── sequencing_summary.txt
+    │   ├── align_unfiltered
+    │   │   ├── calls2ref.bam
+    │   │   ├── calls2ref.bam.bai
+    │   │   ├── calls2ref_stats.txt
+    │   │   ├── chr1
+    │   │   │   ├── calls2ref.bam
+    │   │   │   ├── calls2ref.bam.bai
+    │   │   │   ├── calls2ref_stats.txt
+    │   │   │   ├── fast5
+    │   │   │   │   ├── batch0.fast5
+    │   │   │   │   ├── batch1.fast5
+    │   │   │   │   ├── ...
+    │   │   │   │   └── filename_mapping.txt
+    │   │   │   └── readlist.txt
+    │   │   ├── chr2
+    ┊	┊   ┊	...
+    └── reads -> <link to MinKNOW fast5_pass directory>
+
+(Log files have been omitted from the above listing).
+
+**The guppy analysis stage**
+
+The Guppy analysis stage has two outputs:
+
+* `basecalls.fastq` - all basecalls from the basecaller in a single file.
+* `sequencing_summary.txt` - per-read summary information (as produced by MinKNOW).
+
+**Alignment analysis stage**
+
+The alignment stage of the workflow produced the following files under the
+`align_unfiltered` directory. The `unfiltered` suffix relates to the fact that
+all alignments are retained, not simply the primary alignment of each read.
+
+* `calls2ref.bam` - the alignments of reads to the supplied reference.
+* `calls2ref.bam.bai` - an index file for the alignments.
+
+An auxiliary target of the Katuali pipeline produces the following:
+
+* `calls2ref_stats.txt` - per-read statistics calculated from the corresponding
+  `calls2ref.bam`.
+
+**Alignment filtering stage**
+
+Having aligned the basecall data, Katuali separates the basecalls and read data
+stored in the source `.fast5` data by the regions specified in the Katuali
+config. A directory is produced by region, for example `chr1` in the listing
+above. Under this we find:
+
+* `calls2ref*` - files analagous to those in the `align_unfiltered` directory
+  but containing only those reads with primary alignments to the given region.
+* `readlist.txt` - a simple text table containing the read identifiers of the
+  requisite reads.
+* `fast5` - a directory containing `.fast5` files constructed from the original
+MinKNOW `.fast5` files but containing only the requisite reads. The file
+`filename_mapping.txt` provides a read identifier to filename mapping.
 
 
-### Directory listing and description 
