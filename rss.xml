@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Oxford Nanopore Technologies Open Datasets]]></title><description><![CDATA[Discover Open Datasets provided by Oxford Nanopore Technologies.]]></description><link>https://nanoporetech.github.io/ont-open-datasets</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 23 Sep 2020 14:53:09 GMT</lastBuildDate><item><title><![CDATA[Katuali analysis pipeline for preparing human datasets]]></title><description><![CDATA[Our recent GM24385 data release contains data from multiple
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Oxford Nanopore Technologies Open Datasets]]></title><description><![CDATA[Discover Open Datasets provided by Oxford Nanopore Technologies.]]></description><link>https://nanoporetech.github.io/ont-open-datasets</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 23 Sep 2020 14:57:43 GMT</lastBuildDate><item><title><![CDATA[Katuali analysis pipeline for preparing human datasets]]></title><description><![CDATA[Our recent GM24385 data release contains data from multiple
 flowcells and analytes for both the R9.4.1 and R10.3 flowcell chemistries. The…]]></description><link>https://nanoporetech.github.io/ont-open-datasets/katuali_human_pipeline/</link><guid isPermaLink="false">https://nanoporetech.github.io/ont-open-datasets/katuali_human_pipeline/</guid><pubDate>Tue, 22 Sep 2020 00:04:00 GMT</pubDate><content:encoded>&lt;p&gt;Our recent &lt;a href=&quot;/ont-open-datasets/gm24385_2020.09&quot;&gt;GM24385 data release&lt;/a&gt; contains data from multiple
 flowcells and analytes for both the R9.4.1 and R10.3 flowcell chemistries. The
 uploaded data contains the primary sequencer output data; the full MinKNOW
@@ -247,10 +247,10 @@ contains details of the Snakemake pipeline used.&lt;/p&gt;</content:encoded></it
 Nanopore Technologies to support, Exploration of the…]]></description><link>https://nanoporetech.github.io/ont-open-datasets/launch_annouce/</link><guid isPermaLink="false">https://nanoporetech.github.io/ont-open-datasets/launch_annouce/</guid><pubDate>Tue, 22 Sep 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;The ont-open-data registry provides reference sequencing data from Oxford
 Nanopore Technologies to support,&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;Exploration of the characteristics of
-nanopore sequence data,&lt;/li&gt;
-&lt;li&gt;Assessment and reproduction of performance
-benchmarks,&lt;/li&gt;
+&lt;li&gt;Exploration of the characteristics of nanopore sequence data,&lt;/li&gt;
+&lt;li&gt;Assessment and reproduction of performance benchmarks,&lt;/li&gt;
+&lt;li&gt;Example datasets for analysis on EPI2ME, Oxford Nanopore Technologies’ cloud
+compute infrastructure,&lt;/li&gt;
 &lt;li&gt;Development of tools and methods.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;The data deposited showcases DNA sequences from a representative subset of
@@ -260,10 +260,10 @@ and scripts to describe sample and data provenance.&lt;/p&gt;</content:encoded><
 Nanopore Technologies to support, Exploration of the…]]></description><link>https://nanoporetech.github.io/ont-open-datasets/</link><guid isPermaLink="false">https://nanoporetech.github.io/ont-open-datasets/</guid><pubDate>Tue, 22 Sep 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;The ont-open-data registry provides reference sequencing data from Oxford
 Nanopore Technologies to support,&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;Exploration of the characteristics of
-nanopore sequence data,&lt;/li&gt;
-&lt;li&gt;Assessment and reproduction of performance
-benchmarks,&lt;/li&gt;
+&lt;li&gt;Exploration of the characteristics of nanopore sequence data,&lt;/li&gt;
+&lt;li&gt;Assessment and reproduction of performance benchmarks,&lt;/li&gt;
+&lt;li&gt;Example datasets for analysis on EPI2ME, Oxford Nanopore Technologies’ cloud
+compute infrastructure,&lt;/li&gt;
 &lt;li&gt;Development of tools and methods.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;The data deposited showcases DNA sequences from a representative subset of
