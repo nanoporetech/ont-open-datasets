@@ -28,6 +28,7 @@ The initial sequencer outputs are included in self container directories.
 In addition derived outputs from an automated pipeline are stored
 separately.
 
+
 ***Details concerning sample preparations***
 
 Below is described briefly the method of analyte preparation. Standard, published
@@ -65,6 +66,7 @@ The data is located in an Amazon Webservice S3 bucket at:
     s3://ont-open-data/gm24385_2020.09/
 
 See the [tutorials](/tutorials/) page for information on downloading the dataset.
+
 
 ***Description of available data***
 
