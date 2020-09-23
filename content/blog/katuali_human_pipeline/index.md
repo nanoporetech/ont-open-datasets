@@ -160,6 +160,7 @@ are results of the Guppy basecaller using the settings specified
 in the Katuali configuration file under the tag `v4.0.11_r10.3_hac_prom`.
 Similarly `<align_unfiltered>` indicates results from the alignment
 rule generated using the `unfiltered` settings.
+
     .
     ├── guppy_v4.0.11_r10.3_hac_prom
     │   ├── basecalls.fastq
