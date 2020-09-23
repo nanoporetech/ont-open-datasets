@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Oxford Nanopore Technologies Open Datasets]]></title><description><![CDATA[Discover Open Datasets provided by Oxford Nanopore Technologies.]]></description><link>https://nanoporetech.github.io/ont-open-datasets</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 23 Sep 2020 11:05:55 GMT</lastBuildDate><item><title><![CDATA[Katuali analysis pipeline for preparing human datasets]]></title><description><![CDATA[Our recent GM24385 data release contains data from multiple
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Oxford Nanopore Technologies Open Datasets]]></title><description><![CDATA[Discover Open Datasets provided by Oxford Nanopore Technologies.]]></description><link>https://nanoporetech.github.io/ont-open-datasets</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 23 Sep 2020 11:43:23 GMT</lastBuildDate><item><title><![CDATA[Katuali analysis pipeline for preparing human datasets]]></title><description><![CDATA[Our recent GM24385 data release contains data from multiple
 flowcells and analytes for both the R9.4.1 and R10.3 flowcell chemistries. The…]]></description><link>https://nanoporetech.github.io/ont-open-datasets/katuali_human_pipeline/</link><guid isPermaLink="false">https://nanoporetech.github.io/ont-open-datasets/katuali_human_pipeline/</guid><pubDate>Tue, 22 Sep 2020 00:04:00 GMT</pubDate><content:encoded>&lt;p&gt;Our recent &lt;a href=&quot;/ont-open-datasets/gm24385_2020.09&quot;&gt;GM24385 data release&lt;/a&gt; contains data from multiple
 flowcells and analytes for both the R9.4.1 and R10.3 flowcell chemistries. The
 uploaded data contains the primary sequencer output data; the full MinKNOW
@@ -33,6 +33,71 @@ produce per-region .fast5 file sets.&lt;/li&gt;
 &lt;p&gt;These outputs provide added value to the primary data, and users can extend and
 adapt the katuali pipeline and configuration to calculate additional outputs.&lt;/p&gt;
 &lt;h3&gt;Katuali configuration for GM24385 release&lt;/h3&gt;
+&lt;p&gt;Katuali builds on native Snakemake functionality to provide a way of mapping
+and analysis pipeline across multiple inputs with minimal fuss. How this is
+achieved is describe in the katuali &lt;a href=&quot;https://nanoporetech.github.io/katuali/examples.html#automatic-generation-of-custom-pipeline-targets&quot;&gt;documentation&lt;/a&gt;. This functionality can be used to simulataneously
+process data from multiple flowcells.&lt;/p&gt;
+&lt;p&gt;A single configuration file is used to control Katuali’s behaviour: what input
+data it will use, what pipelines it will run, and the configuration of external
+programs that it runs. The configuration file can be created from the
+provided template using the &lt;a href=&quot;https://nanoporetech.github.io/katuali/tests.html#predefined-workflows&quot;&gt;katuali_config&lt;/a&gt;
+command.&lt;/p&gt;
+&lt;p&gt;For the purposes of the GM24385 data release this file was then customised with
+details of the input datasets (the &lt;code class=&quot;language-text&quot;&gt;.fast5&lt;/code&gt;/&lt;code class=&quot;language-text&quot;&gt;.fastq&lt;/code&gt; files from MinKNOW) and a
+description of the outputs that were required. The resulting files are included
+in the data release under the &lt;code class=&quot;language-text&quot;&gt;config&lt;/code&gt; folder at:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;s3://ont-open-data/gm24385_2020.09/config/&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;See our &lt;a href=&quot;/ont-open-datasets/tutorials/&quot;&gt;tutorials&lt;/a&gt; page for details on how to download these
+files.&lt;/p&gt;
+&lt;h4&gt;Setup of input directories&lt;/h4&gt;
+&lt;p&gt;Katuali can be used to perform basecalling from &lt;code class=&quot;language-text&quot;&gt;.fast5&lt;/code&gt; files to produce
+standard &lt;code class=&quot;language-text&quot;&gt;.fastq&lt;/code&gt; sequence files. However since basecalling was performed
+during the sequencing experiments we can sidestep the basecalling procedure
+and simply bootstrap the Katuali output directory with the alread computed
+basecalls. To do this the &lt;code class=&quot;language-text&quot;&gt;setup_katuali.sh&lt;/code&gt; program, located at:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;s3://ont-open-data/gm24385_2020.09/config/setup_katuali.sh&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;was used. This prepares a directory structure that Katuali would otherwise
+produce itself whilst avoiding some expensive computations. Seperate top-level
+Katuali directories were created to group flowcell data from R9.4.1 and R10.3
+flowcells.&lt;/p&gt;
+&lt;h4&gt;Important aspects of configuration file&lt;/h4&gt;
+&lt;p&gt;The template configuration files need only minor customisation for the GM24385
+dataset. Firstly the &lt;code class=&quot;language-text&quot;&gt;DATA:&lt;/code&gt; section requires specifying, for example the
+R9.4.1 file contains an entries such as the following (one per flowcell):&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;DATA:
+    &amp;#39;20200914_1356_6F_PAF26223_da14221a&amp;#39;:
+        &amp;#39;REFERENCE&amp;#39;: &amp;#39;ref/GCA_000001405.15_GRCh38_no_alt_analysis_set.fasta&amp;#39;
+        &amp;#39;SPLIT_FAST5_REGIONS&amp;#39;:
+            [&amp;#39;chr1&amp;#39;, &amp;#39;chr2&amp;#39;, &amp;#39;chr3&amp;#39;, &amp;#39;chr4&amp;#39;, &amp;#39;chr5&amp;#39;, &amp;#39;chr6&amp;#39;, &amp;#39;chr7&amp;#39;, &amp;#39;chr8&amp;#39;, &amp;#39;chr9&amp;#39;, &amp;#39;chr10&amp;#39;,
+            &amp;#39;chr11&amp;#39;, &amp;#39;chr12&amp;#39;, &amp;#39;chr13&amp;#39;, &amp;#39;chr14&amp;#39;, &amp;#39;chr15&amp;#39;, &amp;#39;chr16&amp;#39;, &amp;#39;chr17&amp;#39;, &amp;#39;chr18&amp;#39;, &amp;#39;chr19&amp;#39;, &amp;#39;chr20&amp;#39;,
+            &amp;#39;chr21&amp;#39;, &amp;#39;chr22&amp;#39;, &amp;#39;chrX&amp;#39;, &amp;#39;chrY&amp;#39;]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The first item here is simply the name MinKNOW output directory. The
+&lt;code class=&quot;language-text&quot;&gt;REFERENCE&lt;/code&gt; entry is a relative filepath to the genomic reference sequence
+appropriate to the sample; in the case of the GM24385 dataset this is simply
+the human reference genome. The final entry in the above is a list of sequence
+identifies (corresponding to entries in the &lt;code class=&quot;language-text&quot;&gt;REFERENCE&lt;/code&gt; file) indicating how
+the dataset should be separated after alignment of sequences to the reference.&lt;/p&gt;
+&lt;p&gt;The second important customisation of the template configuration file is the specification
+of which output files should be created. This appears in the &lt;code class=&quot;language-text&quot;&gt;PIPELINES&lt;/code&gt; section:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;PIPELINES:
+    all_initial: [
+        # do alignments, split bams and fast5s by regions
+        &amp;quot;{DATA}/guppy_v4.0.11_r10.3_hac_prom/align_unfiltered/{SPLIT_FAST5_REGIONS}/fast5/&amp;quot;,
+    ]
+    all_add_alignment_stats: [
+        # calculate alignment stats
+        &amp;quot;{DATA}/guppy_v4.0.11_r10.3_hac_prom/align_unfiltered/calls2ref_stats.txt&amp;quot;,
+        &amp;quot;{DATA}/guppy_v4.0.11_r10.3_hac_prom/align_unfiltered/{SPLIT_FAST5_REGIONS}/calls2ref_stats.txt&amp;quot;
+    ]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;What these so-called “targets” cause Katuali and Snakemake to calculate is discussed below.
+To have katuali perform the calculation for all items in the &lt;code class=&quot;language-text&quot;&gt;DATA&lt;/code&gt; section it is sufficient
+to run katuali with, for example:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;katuali all_initial --configfile ../../config/r9.4.1.config&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;from the directory corresponding to:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;s3://ont-open-data/gm24385_2020.09/analysis/r9.4.1/&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Katuali replaces the &lt;code class=&quot;language-text&quot;&gt;{DATA}&lt;/code&gt; and &lt;code class=&quot;language-text&quot;&gt;{SPLIT_FAST5_REGIONS}&lt;/code&gt; tags in the listings above with
+all possible values listed in the &lt;code class=&quot;language-text&quot;&gt;DATA&lt;/code&gt; section of the configuration file. The resulting
+matrix of targets is given to Snakemake to perform the workflows.&lt;/p&gt;
 &lt;h3&gt;Pipeline data flow&lt;/h3&gt;
 &lt;h3&gt;Directory listing and description&lt;/h3&gt;</content:encoded></item><item><title><![CDATA[GM24385 Dataset Release]]></title><description><![CDATA[We are happy to annouce the release of a Nanopore sequencing dataset
 of the Genome in a Bottle sample GM24385. Multiple PromethION flowcells…]]></description><link>https://nanoporetech.github.io/ont-open-datasets/gm24385_2020.09/</link><guid isPermaLink="false">https://nanoporetech.github.io/ont-open-datasets/gm24385_2020.09/</guid><pubDate>Tue, 22 Sep 2020 00:03:00 GMT</pubDate><content:encoded>&lt;p&gt;We are happy to annouce the release of a Nanopore sequencing dataset

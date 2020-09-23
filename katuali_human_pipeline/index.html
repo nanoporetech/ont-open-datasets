@@ -32,6 +32,71 @@ produce per-region .fast5 file sets.</li>
 <p>These outputs provide added value to the primary data, and users can extend and
 adapt the katuali pipeline and configuration to calculate additional outputs.</p>
 <h3>Katuali configuration for GM24385 release</h3>
+<p>Katuali builds on native Snakemake functionality to provide a way of mapping
+and analysis pipeline across multiple inputs with minimal fuss. How this is
+achieved is describe in the katuali <a href="https://nanoporetech.github.io/katuali/examples.html#automatic-generation-of-custom-pipeline-targets">documentation</a>. This functionality can be used to simulataneously
+process data from multiple flowcells.</p>
+<p>A single configuration file is used to control Katuali’s behaviour: what input
+data it will use, what pipelines it will run, and the configuration of external
+programs that it runs. The configuration file can be created from the
+provided template using the <a href="https://nanoporetech.github.io/katuali/tests.html#predefined-workflows">katuali_config</a>
+command.</p>
+<p>For the purposes of the GM24385 data release this file was then customised with
+details of the input datasets (the <code class="language-text">.fast5</code>/<code class="language-text">.fastq</code> files from MinKNOW) and a
+description of the outputs that were required. The resulting files are included
+in the data release under the <code class="language-text">config</code> folder at:</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">s3://ont-open-data/gm24385_2020.09/config/</code></pre></div>
+<p>See our <a href="/ont-open-datasets/tutorials/">tutorials</a> page for details on how to download these
+files.</p>
+<h4>Setup of input directories</h4>
+<p>Katuali can be used to perform basecalling from <code class="language-text">.fast5</code> files to produce
+standard <code class="language-text">.fastq</code> sequence files. However since basecalling was performed
+during the sequencing experiments we can sidestep the basecalling procedure
+and simply bootstrap the Katuali output directory with the alread computed
+basecalls. To do this the <code class="language-text">setup_katuali.sh</code> program, located at:</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">s3://ont-open-data/gm24385_2020.09/config/setup_katuali.sh</code></pre></div>
+<p>was used. This prepares a directory structure that Katuali would otherwise
+produce itself whilst avoiding some expensive computations. Seperate top-level
+Katuali directories were created to group flowcell data from R9.4.1 and R10.3
+flowcells.</p>
+<h4>Important aspects of configuration file</h4>
+<p>The template configuration files need only minor customisation for the GM24385
+dataset. Firstly the <code class="language-text">DATA:</code> section requires specifying, for example the
+R9.4.1 file contains an entries such as the following (one per flowcell):</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">DATA:
+    &#39;20200914_1356_6F_PAF26223_da14221a&#39;:
+        &#39;REFERENCE&#39;: &#39;ref/GCA_000001405.15_GRCh38_no_alt_analysis_set.fasta&#39;
+        &#39;SPLIT_FAST5_REGIONS&#39;:
+            [&#39;chr1&#39;, &#39;chr2&#39;, &#39;chr3&#39;, &#39;chr4&#39;, &#39;chr5&#39;, &#39;chr6&#39;, &#39;chr7&#39;, &#39;chr8&#39;, &#39;chr9&#39;, &#39;chr10&#39;,
+            &#39;chr11&#39;, &#39;chr12&#39;, &#39;chr13&#39;, &#39;chr14&#39;, &#39;chr15&#39;, &#39;chr16&#39;, &#39;chr17&#39;, &#39;chr18&#39;, &#39;chr19&#39;, &#39;chr20&#39;,
+            &#39;chr21&#39;, &#39;chr22&#39;, &#39;chrX&#39;, &#39;chrY&#39;]</code></pre></div>
+<p>The first item here is simply the name MinKNOW output directory. The
+<code class="language-text">REFERENCE</code> entry is a relative filepath to the genomic reference sequence
+appropriate to the sample; in the case of the GM24385 dataset this is simply
+the human reference genome. The final entry in the above is a list of sequence
+identifies (corresponding to entries in the <code class="language-text">REFERENCE</code> file) indicating how
+the dataset should be separated after alignment of sequences to the reference.</p>
+<p>The second important customisation of the template configuration file is the specification
+of which output files should be created. This appears in the <code class="language-text">PIPELINES</code> section:</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">PIPELINES:
+    all_initial: [
+        # do alignments, split bams and fast5s by regions
+        &quot;{DATA}/guppy_v4.0.11_r10.3_hac_prom/align_unfiltered/{SPLIT_FAST5_REGIONS}/fast5/&quot;,
+    ]
+    all_add_alignment_stats: [
+        # calculate alignment stats
+        &quot;{DATA}/guppy_v4.0.11_r10.3_hac_prom/align_unfiltered/calls2ref_stats.txt&quot;,
+        &quot;{DATA}/guppy_v4.0.11_r10.3_hac_prom/align_unfiltered/{SPLIT_FAST5_REGIONS}/calls2ref_stats.txt&quot;
+    ]</code></pre></div>
+<p>What these so-called “targets” cause Katuali and Snakemake to calculate is discussed below.
+To have katuali perform the calculation for all items in the <code class="language-text">DATA</code> section it is sufficient
+to run katuali with, for example:</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">katuali all_initial --configfile ../../config/r9.4.1.config</code></pre></div>
+<p>from the directory corresponding to:</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">s3://ont-open-data/gm24385_2020.09/analysis/r9.4.1/</code></pre></div>
+<p>Katuali replaces the <code class="language-text">{DATA}</code> and <code class="language-text">{SPLIT_FAST5_REGIONS}</code> tags in the listings above with
+all possible values listed in the <code class="language-text">DATA</code> section of the configuration file. The resulting
+matrix of targets is given to Snakemake to perform the workflows.</p>
 <h3>Pipeline data flow</h3>
 <h3>Directory listing and description</h3></section><hr style="margin-bottom:1.666rem"/><footer><div style="display:flex;margin-bottom:4.165rem"><div class=" gatsby-image-wrapper" style="position:relative;overflow:hidden;display:inline-block;width:50px;height:50px;margin-right:0.833rem;margin-bottom:0;min-width:50px;border-radius:100%"><img aria-hidden="true" src="data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAUABQDASIAAhEBAxEB/8QAGQABAQADAQAAAAAAAAAAAAAAAAQBAgMF/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEAMQAAAB92GiIpbDvkAP/8QAGRAAAwEBAQAAAAAAAAAAAAAAAAIDAREQ/9oACAEBAAEFAi2OhO6Or0xTUpUSKLnOe//EABQRAQAAAAAAAAAAAAAAAAAAACD/2gAIAQMBAT8BH//EABQRAQAAAAAAAAAAAAAAAAAAACD/2gAIAQIBAT8BH//EAB4QAAIBAwUAAAAAAAAAAAAAAAARAQITICEiMUFh/9oACAEBAAY/Ai5ROncDZ6buBLD/xAAcEAEAAgEFAAAAAAAAAAAAAAABABEhEDFRYXH/2gAIAQEAAT8hjCtGZhyTpgbm+BmUtvEoYQGwrX//2gAMAwEAAgADAAAAEGMAAP/EABQRAQAAAAAAAAAAAAAAAAAAACD/2gAIAQMBAT8QH//EABQRAQAAAAAAAAAAAAAAAAAAACD/2gAIAQIBAT8QH//EAB8QAQACAgEFAQAAAAAAAAAAAAEAESExYRBBUYGRsf/aAAgBAQABPxCZMgl2eS/yK13CmRllIu3Yea1LKwt5B8deoLrrvRCqIcHX/9k=" alt="Oxford Nanopore Technologies" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:1;transition-delay:500ms;border-radius:50%"/><noscript><picture><source srcset="/ont-open-datasets/static/7be3fdde44e6aed1089073501c3ba161/99438/profile-pic.jpg 1x,
 /ont-open-datasets/static/7be3fdde44e6aed1089073501c3ba161/aba1d/profile-pic.jpg 1.5x,
