@@ -34,7 +34,17 @@ separately.
 
 ***Details concerning sample preparations***
 
-TODO.
+- High molecular weight DNA from GM24385 lymphoblastoid cells was prepared by 
+  Evotec.
+- Circulomics Short Read Eliminator XL protocol was used to deplete DNA
+  fragments < 40kb in length.
+- (optional) Megaruptor was used to shear DNA to obtain DNA fragments with
+  an approximate N50 of 30kb.
+- DNA was end repaired and dA tailed prior to LSK based library preparation.
+- DNA sequencing was performed using PromethION device.
+
+The following cell line samples were obtained from the NIGMS Human Genetic Cell
+Repository at the Coriell Institute for Medical Research: GM24385
 
 ***Location of the data***
 
