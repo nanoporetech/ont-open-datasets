@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Oxford Nanopore Technologies Open Datasets]]></title><description><![CDATA[Discover Open Datasets provided by Oxford Nanopore Technologies.]]></description><link>https://nanoporetech.github.io/ont-open-datasets</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 23 Sep 2020 11:43:23 GMT</lastBuildDate><item><title><![CDATA[Katuali analysis pipeline for preparing human datasets]]></title><description><![CDATA[Our recent GM24385 data release contains data from multiple
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Oxford Nanopore Technologies Open Datasets]]></title><description><![CDATA[Discover Open Datasets provided by Oxford Nanopore Technologies.]]></description><link>https://nanoporetech.github.io/ont-open-datasets</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 23 Sep 2020 14:30:44 GMT</lastBuildDate><item><title><![CDATA[Katuali analysis pipeline for preparing human datasets]]></title><description><![CDATA[Our recent GM24385 data release contains data from multiple
 flowcells and analytes for both the R9.4.1 and R10.3 flowcell chemistries. The…]]></description><link>https://nanoporetech.github.io/ont-open-datasets/katuali_human_pipeline/</link><guid isPermaLink="false">https://nanoporetech.github.io/ont-open-datasets/katuali_human_pipeline/</guid><pubDate>Tue, 22 Sep 2020 00:04:00 GMT</pubDate><content:encoded>&lt;p&gt;Our recent &lt;a href=&quot;/ont-open-datasets/gm24385_2020.09&quot;&gt;GM24385 data release&lt;/a&gt; contains data from multiple
 flowcells and analytes for both the R9.4.1 and R10.3 flowcell chemistries. The
 uploaded data contains the primary sequencer output data; the full MinKNOW
@@ -53,7 +53,7 @@ files.&lt;/p&gt;
 &lt;p&gt;Katuali can be used to perform basecalling from &lt;code class=&quot;language-text&quot;&gt;.fast5&lt;/code&gt; files to produce
 standard &lt;code class=&quot;language-text&quot;&gt;.fastq&lt;/code&gt; sequence files. However since basecalling was performed
 during the sequencing experiments we can sidestep the basecalling procedure
-and simply bootstrap the Katuali output directory with the alread computed
+and simply bootstrap the Katuali output directory with the already computed
 basecalls. To do this the &lt;code class=&quot;language-text&quot;&gt;setup_katuali.sh&lt;/code&gt; program, located at:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;s3://ont-open-data/gm24385_2020.09/config/setup_katuali.sh&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;was used. This prepares a directory structure that Katuali would otherwise
@@ -98,8 +98,85 @@ to run katuali with, for example:&lt;/p&gt;
 &lt;p&gt;Katuali replaces the &lt;code class=&quot;language-text&quot;&gt;{DATA}&lt;/code&gt; and &lt;code class=&quot;language-text&quot;&gt;{SPLIT_FAST5_REGIONS}&lt;/code&gt; tags in the listings above with
 all possible values listed in the &lt;code class=&quot;language-text&quot;&gt;DATA&lt;/code&gt; section of the configuration file. The resulting
 matrix of targets is given to Snakemake to perform the workflows.&lt;/p&gt;
-&lt;h3&gt;Pipeline data flow&lt;/h3&gt;
-&lt;h3&gt;Directory listing and description&lt;/h3&gt;</content:encoded></item><item><title><![CDATA[GM24385 Dataset Release]]></title><description><![CDATA[We are happy to annouce the release of a Nanopore sequencing dataset
+&lt;h3&gt;Pipeline data flow and output descriptions&lt;/h3&gt;
+&lt;p&gt;The filepath targets defined in the Katuali configuration files trigger
+Snakemake to perform all necessary calculations required to produce the
+requested files. Users interested in the Snakemake rules used to produce all
+files should consult the Katuali documentation and source files
+&lt;a href=&quot;https://github.com/nanoporetech/katuali/tree/master/katuali/data&quot;&gt;here&lt;/a&gt;, which
+are grouped logically according to function.&lt;/p&gt;
+&lt;p&gt;Katuali has for the most part a convention that outputs which are derived
+directly from an input (or previous intermediate output) are stored in a
+sub-directory of that previous input. This leads to a continued deepening of
+the directory structure. A benefit of this approach is the ability to
+recursively calculate new outputs of the same type without having to write
+multiple rules. Downside of the approach are that it is not always easy to see
+which items are the immediate outputs of an analysis stage and which are the
+outputs of subsequent stages. To aid users who do not wish to examine the
+Snakemake files included in Katuali, the directory listing below will aid
+comprehension.&lt;/p&gt;
+&lt;p&gt;Katuali generically labels results of analysis stages using a
+&lt;code class=&quot;language-text&quot;&gt;&amp;lt;stage&amp;gt;_&amp;lt;suffix&amp;gt;&lt;/code&gt; form, for example in the below the top level
+&lt;code class=&quot;language-text&quot;&gt;&amp;lt;guppy_v4.0.11_r10.3_hac_prom&amp;gt;&lt;/code&gt; indicates results under this level
+are results of the Guppy basecaller using the settings specified
+in the Katuali configuration file under the tag &lt;code class=&quot;language-text&quot;&gt;v4.0.11_r10.3_hac_prom&lt;/code&gt;.
+Similarly &lt;code class=&quot;language-text&quot;&gt;&amp;lt;align_unfiltered&amp;gt;&lt;/code&gt; indicates results from the alignment
+rule generated using the &lt;code class=&quot;language-text&quot;&gt;unfiltered&lt;/code&gt; settings.
+.
+├── guppy&lt;em&gt;v4.0.11&lt;/em&gt;r10.3&lt;em&gt;hac&lt;/em&gt;prom
+│   ├── basecalls.fastq
+│   ├── sequencing&lt;em&gt;summary.txt
+│   ├── align&lt;/em&gt;unfiltered
+│   │   ├── calls2ref.bam
+│   │   ├── calls2ref.bam.bai
+│   │   ├── calls2ref&lt;em&gt;stats.txt
+│   │   ├── chr1
+│   │   │   ├── calls2ref.bam
+│   │   │   ├── calls2ref.bam.bai
+│   │   │   ├── calls2ref&lt;/em&gt;stats.txt
+│   │   │   ├── fast5
+│   │   │   │   ├── batch0.fast5
+│   │   │   │   ├── batch1.fast5
+│   │   │   │   ├── …
+│   │   │   │   └── filename&lt;em&gt;mapping.txt
+│   │   │   └── readlist.txt
+│   │   ├── chr2
+┊	┊   ┊	…
+└── reads -&gt; &amp;#x3C;link to MinKNOW fast5&lt;/em&gt;pass directory&gt;&lt;/p&gt;
+&lt;p&gt;(Log files have been omitted from the above listing).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;The guppy analysis stage&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The Guppy analysis stage has two outputs:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;basecalls.fastq&lt;/code&gt; - all basecalls from the basecaller in a single file.&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;sequencing_summary.txt&lt;/code&gt; - per-read summary information (as produced by MinKNOW).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Alignment analysis stage&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The alignment stage of the workflow produced the following files under the
+&lt;code class=&quot;language-text&quot;&gt;align_unfiltered&lt;/code&gt; directory. The &lt;code class=&quot;language-text&quot;&gt;unfiltered&lt;/code&gt; suffix relates to the fact that
+all alignments are retained, not simply the primary alignment of each read.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;calls2ref.bam&lt;/code&gt; - the alignments of reads to the supplied reference.&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;calls2ref.bam.bai&lt;/code&gt; - an index file for the alignments.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;An auxiliary target of the Katuali pipeline produces the following:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;calls2ref_stats.txt&lt;/code&gt; - per-read statistics calculated from the corresponding
+&lt;code class=&quot;language-text&quot;&gt;calls2ref.bam&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Alignment filtering stage&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Having aligned the basecall data, Katuali separates the basecalls and read data
+stored in the source &lt;code class=&quot;language-text&quot;&gt;.fast5&lt;/code&gt; data by the regions specified in the Katuali
+config. A directory is produced by region, for example &lt;code class=&quot;language-text&quot;&gt;chr1&lt;/code&gt; in the listing
+above. Under this we find:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;calls2ref*&lt;/code&gt; - files analagous to those in the &lt;code class=&quot;language-text&quot;&gt;align_unfiltered&lt;/code&gt; directory
+but containing only those reads with primary alignments to the given region.&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;readlist.txt&lt;/code&gt; - a simple text table containing the read identifiers of the
+requisite reads.&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;fast5&lt;/code&gt; - a directory containing &lt;code class=&quot;language-text&quot;&gt;.fast5&lt;/code&gt; files constructed from the original
+MinKNOW &lt;code class=&quot;language-text&quot;&gt;.fast5&lt;/code&gt; files but containing only the requisite reads. The file
+&lt;code class=&quot;language-text&quot;&gt;filename_mapping.txt&lt;/code&gt; provides a read identifier to filename mapping.&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[GM24385 Dataset Release]]></title><description><![CDATA[We are happy to annouce the release of a Nanopore sequencing dataset
 of the Genome in a Bottle sample GM24385. Multiple PromethION flowcells…]]></description><link>https://nanoporetech.github.io/ont-open-datasets/gm24385_2020.09/</link><guid isPermaLink="false">https://nanoporetech.github.io/ont-open-datasets/gm24385_2020.09/</guid><pubDate>Tue, 22 Sep 2020 00:03:00 GMT</pubDate><content:encoded>&lt;p&gt;We are happy to annouce the release of a Nanopore sequencing dataset
 of the Genome in a Bottle sample GM24385.&lt;/p&gt;
 &lt;p&gt;Multiple PromethION flowcells using both the R9.4.1 and R10.3 nanopores.
