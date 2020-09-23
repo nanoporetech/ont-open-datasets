@@ -46,4 +46,15 @@ See the [tutorials](/tutorials/) page for information on downloading the dataset
 
 ***Description of available data***
 
-TODO
+The uploaded dataset has been prepared using a snakemake pipeline to:
+
+1. Align basecalls to reference sequence. All primary, secondary and
+supplementary alignments are kept
+2. Filter .bam file to list of regions defined in configuration file
+retaining only primary alignments.
+3. Produce read statistics from per-region .bams.
+4. Repack/group source .fast5 files according to primary alignment .bams
+to produce per-region .fast5 file sets.
+
+For more details see our [post](/katuali_human_pipeline/) detailing the
+pipeline and its outputs.
