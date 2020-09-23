@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Oxford Nanopore Technologies Open Datasets]]></title><description><![CDATA[Discover Open Datasets provided by Oxford Nanopore Technologies.]]></description><link>https://nanoporetech.github.io/ont-open-datasets</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 23 Sep 2020 16:13:57 GMT</lastBuildDate><item><title><![CDATA[Katuali analysis pipeline for preparing human datasets]]></title><description><![CDATA[Our recent GM24385 data release contains data from multiple
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Oxford Nanopore Technologies Open Datasets]]></title><description><![CDATA[Discover Open Datasets provided by Oxford Nanopore Technologies.]]></description><link>https://nanoporetech.github.io/ont-open-datasets</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 23 Sep 2020 16:24:36 GMT</lastBuildDate><item><title><![CDATA[Katuali analysis pipeline for preparing human datasets]]></title><description><![CDATA[Our recent GM24385 data release contains data from multiple
 flowcells and analytes for both the R9.4.1 and R10.3 flowcell chemistries. The…]]></description><link>https://nanoporetech.github.io/ont-open-datasets/katuali_human_pipeline/</link><guid isPermaLink="false">https://nanoporetech.github.io/ont-open-datasets/katuali_human_pipeline/</guid><pubDate>Tue, 22 Sep 2020 00:04:00 GMT</pubDate><content:encoded>&lt;p&gt;Our recent &lt;a href=&quot;/ont-open-datasets/gm24385_2020.09&quot;&gt;GM24385 data release&lt;/a&gt; contains data from multiple
 flowcells and analytes for both the R9.4.1 and R10.3 flowcell chemistries. The
 uploaded data contains the primary sequencer output data; the full MinKNOW
@@ -184,9 +184,6 @@ The direct sequencer output is included, raw signal data stored in
 .fast5 files and basecalled data in .fastq file. Additional secondary
 analyses are included, notably alignments of sequence data to the
 reference genome are provided along with statistics derived from these.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;The following cell lines/DNA samples were obtained from the NIGMS Human
-Genetic Cell Repository at the Coriell Institute for Medical Research:
-GM24385.&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;&lt;em&gt;Whats included?&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;The dataset comprises multiple R9.4.1 and R10.3 flowcells of multiple
 separately prepared samples; each sample was run on each flowcell type.&lt;/p&gt;
@@ -194,18 +191,54 @@ separately prepared samples; each sample was run on each flowcell type.&lt;/p&gt
 In addition derived outputs from an automated pipeline are stored
 separately.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;&lt;em&gt;Details concerning sample preparations&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Below is described briefly the method of analyte preparation. Standard, published
+protocols were followed with no intentional deviation.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;The following cell line samples were obtained from the NIGMS Human Genetic Cell
+Repository at the Coriell Institute for Medical Research: GM24385&lt;/em&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;High molecular weight DNA from GM24385 lymphoblastoid cells was prepared by
-Evotec.&lt;/li&gt;
-&lt;li&gt;Circulomics Short Read Eliminator XL protocol was used to deplete DNA
-fragments &amp;#x3C; 40kb in length.&lt;/li&gt;
-&lt;li&gt;(optional) Megaruptor was used to shear DNA to obtain DNA fragments with
-an approximate N50 of 30kb.&lt;/li&gt;
+&lt;a href=&quot;https://www.evotec.com/en&quot;&gt;Evotec&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.circulomics.com/store/Short-Read-Eliminator-XL-p138401730&quot;&gt;Circulomics Short Read Eliminator XL&lt;/a&gt;
+protocol was used to deplete DNA fragments &amp;#x3C; 40kb in length.&lt;/li&gt;
+&lt;li&gt;(optional) &lt;a href=&quot;https://www.diagenode.com/en/categories/megaruptor&quot;&gt;Megaruptor&lt;/a&gt;
+was used to shear DNA to obtain DNA fragments with an approximate N50 of 30kb.&lt;/li&gt;
 &lt;li&gt;DNA was end repaired and dA tailed prior to LSK based library preparation.&lt;/li&gt;
 &lt;li&gt;DNA sequencing was performed using PromethION device.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;The following cell line samples were obtained from the NIGMS Human Genetic Cell
-Repository at the Coriell Institute for Medical Research: GM24385&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; the analyte with additional Megaruptor treatment was derived from
+separate source material than the analyte with only the SRE preparation step.&lt;/p&gt;
+&lt;p&gt;The dataset comprises two flowcells for each sample prep:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&quot;center&quot;&gt;Pore&lt;/th&gt;
+&lt;th align=&quot;center&quot;&gt;Treatmeant&lt;/th&gt;
+&lt;th align=&quot;center&quot;&gt;Flowcells&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align=&quot;center&quot;&gt;R9.4.1&lt;/td&gt;
+&lt;td align=&quot;center&quot;&gt;SRE&lt;/td&gt;
+&lt;td align=&quot;center&quot;&gt;PAF27096, PAF27462&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;center&quot;&gt;R10.3&lt;/td&gt;
+&lt;td align=&quot;center&quot;&gt;SRE&lt;/td&gt;
+&lt;td align=&quot;center&quot;&gt;PAF26223, PAF26161&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;center&quot;&gt;R9.4.1&lt;/td&gt;
+&lt;td align=&quot;center&quot;&gt;SRE + Megaruptor&lt;/td&gt;
+&lt;td align=&quot;center&quot;&gt;PAF27032, PAF27050&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;center&quot;&gt;R10.3&lt;/td&gt;
+&lt;td align=&quot;center&quot;&gt;SRE + Megaruptor&lt;/td&gt;
+&lt;td align=&quot;center&quot;&gt;PAF03149, PAF26603&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 &lt;p&gt;&lt;strong&gt;&lt;em&gt;Location of the data&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;The data is located in an Amazon Webservice S3 bucket at:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;s3://ont-open-data/gm24385_2020.09/&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;

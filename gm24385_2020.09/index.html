@@ -5,9 +5,6 @@ The direct sequencer output is included, raw signal data stored in
 .fast5 files and basecalled data in .fastq file. Additional secondary
 analyses are included, notably alignments of sequence data to the
 reference genome are provided along with statistics derived from these.</p>
-<p><em>The following cell lines/DNA samples were obtained from the NIGMS Human
-Genetic Cell Repository at the Coriell Institute for Medical Research:
-GM24385.</em></p>
 <p><strong><em>Whats included?</em></strong></p>
 <p>The dataset comprises multiple R9.4.1 and R10.3 flowcells of multiple
 separately prepared samples; each sample was run on each flowcell type.</p>
@@ -15,18 +12,54 @@ separately prepared samples; each sample was run on each flowcell type.</p>
 In addition derived outputs from an automated pipeline are stored
 separately.</p>
 <p><strong><em>Details concerning sample preparations</em></strong></p>
+<p>Below is described briefly the method of analyte preparation. Standard, published
+protocols were followed with no intentional deviation.</p>
+<p><em>The following cell line samples were obtained from the NIGMS Human Genetic Cell
+Repository at the Coriell Institute for Medical Research: GM24385</em></p>
 <ul>
 <li>High molecular weight DNA from GM24385 lymphoblastoid cells was prepared by
-Evotec.</li>
-<li>Circulomics Short Read Eliminator XL protocol was used to deplete DNA
-fragments &#x3C; 40kb in length.</li>
-<li>(optional) Megaruptor was used to shear DNA to obtain DNA fragments with
-an approximate N50 of 30kb.</li>
+<a href="https://www.evotec.com/en">Evotec</a>.</li>
+<li><a href="https://www.circulomics.com/store/Short-Read-Eliminator-XL-p138401730">Circulomics Short Read Eliminator XL</a>
+protocol was used to deplete DNA fragments &#x3C; 40kb in length.</li>
+<li>(optional) <a href="https://www.diagenode.com/en/categories/megaruptor">Megaruptor</a>
+was used to shear DNA to obtain DNA fragments with an approximate N50 of 30kb.</li>
 <li>DNA was end repaired and dA tailed prior to LSK based library preparation.</li>
 <li>DNA sequencing was performed using PromethION device.</li>
 </ul>
-<p>The following cell line samples were obtained from the NIGMS Human Genetic Cell
-Repository at the Coriell Institute for Medical Research: GM24385</p>
+<p><strong>Note:</strong> the analyte with additional Megaruptor treatment was derived from
+separate source material than the analyte with only the SRE preparation step.</p>
+<p>The dataset comprises two flowcells for each sample prep:</p>
+<table>
+<thead>
+<tr>
+<th align="center">Pore</th>
+<th align="center">Treatmeant</th>
+<th align="center">Flowcells</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">R9.4.1</td>
+<td align="center">SRE</td>
+<td align="center">PAF27096, PAF27462</td>
+</tr>
+<tr>
+<td align="center">R10.3</td>
+<td align="center">SRE</td>
+<td align="center">PAF26223, PAF26161</td>
+</tr>
+<tr>
+<td align="center">R9.4.1</td>
+<td align="center">SRE + Megaruptor</td>
+<td align="center">PAF27032, PAF27050</td>
+</tr>
+<tr>
+<td align="center">R10.3</td>
+<td align="center">SRE + Megaruptor</td>
+<td align="center">PAF03149, PAF26603</td>
+</tr>
+</tbody>
+</table>
 <p><strong><em>Location of the data</em></strong></p>
 <p>The data is located in an Amazon Webservice S3 bucket at:</p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">s3://ont-open-data/gm24385_2020.09/</code></pre></div>
