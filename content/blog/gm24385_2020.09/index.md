@@ -55,8 +55,8 @@ The dataset comprises two flowcells for each sample prep:
 |:------:|:----------------:|:------------------:|
 | R9.4.1 |        SRE       | PAF27096, PAF27462 |
 | R10.3  |        SRE       | PAF26223, PAF26161 |
-| R9.4.1 | SRE + Megaruptor | PAF27032, PAF27050 |
-| R10.3  | SRE + Megaruptor | PAF03149, PAF26603 |
+| R9.4.1 | SRE + Megaruptor |                    |
+| R10.3  | SRE + Megaruptor |                    |
 
 
 ***Location of the data***
