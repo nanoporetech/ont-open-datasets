@@ -41,22 +41,15 @@ Repository at the Coriell Institute for Medical Research: GM24385*
   [Evotec](https://www.evotec.com/en).
 - [Circulomics Short Read Eliminator XL](https://www.circulomics.com/store/Short-Read-Eliminator-XL-p138401730)
   protocol was used to deplete DNA fragments < 40kb in length.
-- (optional) [Megaruptor](https://www.diagenode.com/en/categories/megaruptor)
-  was used to shear DNA to obtain DNA fragments with an approximate N50 of 30kb.
 - DNA was end repaired and dA tailed prior to LSK based library preparation.
 - DNA sequencing was performed using PromethION device.
 
-**Note:** the analyte with additional Megaruptor treatment was derived from
-separate source material than the analyte with only the SRE preparation step.
-
-The dataset comprises two flowcells for each sample prep:
+The dataset comprises multiple flowcells for each pore:
 
 | Pore   | Treatmeant       | Flowcells          |
 |:------:|:----------------:|:------------------:|
 | R9.4.1 |        SRE       | PAF27096, PAF27462 |
 | R10.3  |        SRE       | PAF26223, PAF26161 |
-| R9.4.1 | SRE + Megaruptor |                    |
-| R10.3  | SRE + Megaruptor |                    |
 
 
 ***Location of the data***

@@ -21,7 +21,7 @@ without requiring login credentials. To download the data we
 recommend using the [AWS command line interface](https://aws.amazon.com/cli/).
 With the CLI installed listing the datasets can be performed with:
 
-    aws s3 ls s3://ont-open-data/
+    aws s3 ls --no-sign-request s3://ont-open-data/
 
 There will be a subdirectory per dataset release. Inside each dataset
 will be contained a README.md file with brief details. This website
@@ -30,7 +30,7 @@ will contain additional details for each dataset.
 To download datasets or extracts thereof we recommend using the `sync`
 command:
 
-    aws s3 sync s3://ont-open-data/gm24385_2020.09 gm24385_2020.09
+    aws s3 sync --no-sign-request s3://ont-open-data/gm24385_2020.09 gm24385_2020.09
 
 Datasets may be added to or amended over time so using `sync` can be
 used with a previously fetch copy to update with the latest changes
