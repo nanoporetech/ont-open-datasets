@@ -7,13 +7,13 @@ datasets within the Open Datasets project.</p>
 without requiring login credentials. To download the data we
 recommend using the <a href="https://aws.amazon.com/cli/">AWS command line interface</a>.
 With the CLI installed listing the datasets can be performed with:</p>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">aws s3 ls s3://ont-open-data/</code></pre></div>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">aws s3 ls --no-sign-request s3://ont-open-data/</code></pre></div>
 <p>There will be a subdirectory per dataset release. Inside each dataset
 will be contained a README.md file with brief details. This website
 will contain additional details for each dataset.</p>
 <p>To download datasets or extracts thereof we recommend using the <code class="language-text">sync</code>
 command:</p>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">aws s3 sync s3://ont-open-data/gm24385_2020.09 gm24385_2020.09</code></pre></div>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">aws s3 sync --no-sign-request s3://ont-open-data/gm24385_2020.09 gm24385_2020.09</code></pre></div>
 <p>Datasets may be added to or amended over time so using <code class="language-text">sync</code> can be
 used with a previously fetch copy to update with the latest changes
 and additions.</p>
