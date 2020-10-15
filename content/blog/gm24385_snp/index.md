@@ -91,8 +91,8 @@ the `medaka_variant` program can be found in the medaka
 The result of running the above command will be a directory `medaka_variant`
 containing (amongst other files):
 
- * round_0_hap_mixed_phased.bam: alignments (as in `chr20.primary.bam`), tagged with a calculated haplotype,
- * round_1.vcf: the final output variant candidates for DeepVariant.
+ * `round_0_hap_mixed_phased.bam`: alignments (as in `chr20.primary.bam`), tagged with a calculated haplotype,
+ * `round_1.vcf`: the final output variant candidates for DeepVariant.
 
 #### Running DeepVariant
 

@@ -9,7 +9,7 @@ const fontFamily = [
 ];
 
 const typography = new Typography({
-  baseFontSize: "18px",
+  baseFontSize: "16px",
   baseLineHeight: 1.666,
   headerFontFamily: fontFamily,
   bodyFontFamily: fontFamily,
