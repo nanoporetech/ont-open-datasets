@@ -27,9 +27,11 @@ rather than performing computation on the whole genome.
 > *This walkthrough assumes some familiarity with standard bioinformatic tools
 > for handling genomics data. A working installation of
 > [samtools](http://www.htslib.org/),
+> [bedtools](https://bedtools.readthedocs.io/en/latest/),
 > [medaka](https://github.com/nanoporetech/medaka),
 > [docker](https://www.docker.com/get-started), and the [AWS command-line
-> tools](https://aws.amazon.com/cli/) are required to follow the process below.*
+> tools](https://aws.amazon.com/cli/) are required to follow the process
+> below.*
 
 
 #### Data preparation
@@ -49,8 +51,8 @@ and merge these into a single `.bam` file:
     samtools index chr20.bam
 
 As an additional step we will filter the `chr20.bam` file to leave only primary
-alignments, removing secondard and supplementary alignments. This is necessary
-as otherwise DeepVariant, which we will use later, will process these
+alignments, removing secondary and supplementary alignments. This is necessary
+as DeepVariant, which we will use later, will otherwise process these
 additional alignments.
 
     samtools view chr20.bam -F 2308 -@ 64 -b > chr20.primary.bam
@@ -83,16 +85,16 @@ To perform candidate generation with medaka we run:
         -r chr20 -t 8 -P 0 -l
 
 The final two options here (`-P 0 -l`) instruct medaka to leave its
-substitution calls and to decompose multi-nucleotide substitutions into
-independent single nucleotide substitutions. Details of workflow employed by
-the `medaka_variant` program can be found in the medaka
+substitution calls unfiltered and to decompose multi-nucleotide substitutions
+into independent single nucleotide substitutions. Details of workflow employed
+by the `medaka_variant` program can be found in the medaka
 [documentation](https://nanoporetech.github.io/medaka/snp.html#).
 
 The result of running the above command will be a directory `medaka_variant`
 containing (amongst other files):
 
- * `round_0_hap_mixed_phased.bam`: alignments (as in `chr20.primary.bam`), tagged with a calculated haplotype,
- * `round_1.vcf`: the final output variant candidates for DeepVariant.
+ * *`round_0_hap_mixed_phased.bam`*: alignments (as in `chr20.primary.bam`), tagged with a calculated haplotype,
+ * *`round_1.vcf`*: the final output variant candidates for DeepVariant.
 
 #### Running DeepVariant
 
@@ -107,7 +109,11 @@ used to run DeepVariant:
 This script simply gathers together the required inputs before executing
 DeepVariant within the docker container, it can be run simply with:
 
-    ./run_deepvariant.sh -b medaka_variant/round_0_hap_mixed_phased.bam -v medaka_variant/round_1.vcf -r GCA_000001405.15_GRCh38_no_alt_analysis_set.fasta -o deepvariant -t 64
+    ./run_deepvariant.sh \
+        -b medaka_variant/round_0_hap_mixed_phased.bam \
+        -v medaka_variant/round_1.vcf \
+        -r GCA_000001405.15_GRCh38_no_alt_analysis_set.fasta \
+        -o deepvariant -t 64
 
 The final variant calls will be present at `deepvariant/deepvariant.vcf.gz`.
 
@@ -140,12 +146,6 @@ comparison. An abbreviated form is given below:
 |            Type        |     INDEL       |     SNP         |
 |------------------------|-----------------|-----------------|
 |     TRUTH.TOTAL        |     11271       |     71334       |
-|     TRUTH.TP           |     6680        |     71137       |
-|     TRUTH.FN           |     4591        |     197         |
-|     QUERY.TOTAL        |     14365       |     129429      |
-|     QUERY.FP           |     1320        |     193         |
-|     QUERY.UNK          |     6197        |     58079       |
-|     FP.gt              |     335         |     28          |
 |     METRIC.Recall      |     0.5927      |     0.9972      |
 |     METRIC.Precision   |     0.8384      |     0.9973      |
 |     METRIC.F1_Score    |     0.6944      |     0.9973      |
@@ -156,7 +156,10 @@ The NCBI reference data includes an index of such regions, we can mask these
 regions from the comparison:
     
     wget https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/genome-stratifications/v2.0/GRCh38/LowComplexity/GRCh38_notinAllTandemRepeatsandHomopolymers_slop5.bed.gz
-    bedtools intersect -a HG002_GRCh38_1_22_v4.1_draft_benchmark.bed -b GRCh38_notinAllTandemRepeatsandHomopolymers_slop5.bed.gz > HG002_GRCh38_1_22_v4.1_draft_benchmark.norepeat.bed
+    bedtools intersect \
+        -a HG002_GRCh38_1_22_v4.1_draft_benchmark.bed \
+        -b GRCh38_notinAllTandemRepeatsandHomopolymers_slop5.bed.gz 
+        > HG002_GRCh38_1_22_v4.1_draft_benchmark.norepeat.bed
 
     docker run -it -v ${PWD}:${PWD} pkrusche/hap.py /opt/hap.py/bin/hap.py \
         ${PWD}/HG002_GRCh38_GIABv4.1.vcf.gz ${PWD}/deepvariant/deepvariant.vcf.gz \
@@ -175,12 +178,15 @@ With these regions masked we now obtain:
 
 The latest research basecallers are better able to provide accurate calls
 through low complexity regions. The example below compares basecalls produced
-with Guppy 4.0.11 and an unreleased version of the Bonito basecaller.
+with Guppy 4.0.11 and the soon to be release Bonito version 0.3.0 basecaller.
 
 ![bonito_low_complexity_calls](./bonito_igv.png "Bonito Low Complexity Basecalls")
 
-With improvements to basecalling we therefor anticipate being able to produce
-highly accurate INDEL calls in these regions in the near future.
+The [IGV](http://software.broadinstitute.org/software/igv/) screenshot shows
+how the Bonito basecaller is less prone to long deletion tracks in the low
+complexity region. With improvements to basecalling we therefore anticipate
+being able to produce highly accurate INDEL calls in these regions in the near
+future.
 
 ### Acknowledgements
 

@@ -12,17 +12,18 @@ tags:
 We are please to announce the addition of
 [bonito](https://github.com/nanoporetech/bonito) basecalling results to the
 GM24385 dataset. Bonito is a research-grade, open source basecaller utilising
-the [PyTorch](https://pytorch.org/) library and; its development explores
+the [PyTorch](https://pytorch.org/) library; its development explores
 alternative basecalling frameworks to those use in the product-grade Guppy
 basecalling software.
 
-The Bonito basecalling was performed using Bonito version 0.3.0, driven by the
-same [katuali](/katuali_human_pipeline/) analysis pipeline as for the initial
-dataset release.  As input the Bonito basecaller was provided the
-per-chromosome `.fast5` files created in the initial pipeline via alignment of
-the Guppy 4.0.11 basecalls. This allows for easy comparison of results on
-subsets of the data (but may lead to subtle side-effects). For example the
-analysis data structure contains now entries of the form:
+The Bonito basecalling for the GM24385 dataset was performed using Bonito
+version 0.3.0, driven by the same [katuali](/katuali_human_pipeline/) analysis
+pipeline as for the initial dataset release.  The Bonito basecaller was
+provided as input the per-chromosome `.fast5` files created in the initial
+pipeline via alignment of the Guppy 4.0.11 basecalls. This allows for easy
+comparison of results on subsets of the data (but may lead to subtle
+side-effects). For example the analysis data structure contains now entries of
+the form:
 
     gm24385_2020.09/analysis/r9.4.1/{flowcell}/guppy_{suffix}/align_unfiltered/{chromosome}/bonito
     ├── align_unfiltered
@@ -34,8 +35,8 @@ analysis data structure contains now entries of the form:
     └── basecalls.fastq.gz
 
 The file `basecalls.fastq.gz` contains the basecalling results from Bonito. The
-quality scores in these files have been mocked as Bonito does not as yet
-provide quality scores. Similar to the main folder structure the
+quality scores in these files have been mocked as the pre-release build of Bonito used
+does not yet provide quality scores. Similar to the main folder structure the
 `align_unfiltered` directory contains unfiltered alignments of the basecalls to
 the reference sequence (`calls2ref.bam`) along with text files summarizing the
 properties of the alignments.
@@ -91,3 +92,5 @@ The following python code,
 can be used to plot a kernel density estimate for the read alignment accuracy:
 
 ![accuracy comparison](./accuracy.png "Basecalls: Bonito CTC-CRF vs. Guppy 4.0.11")
+
+The plot indicates a roughly one-third decrease in the modal accuracy of reads.
