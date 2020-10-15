@@ -1,5 +1,5 @@
 ---
-title: GM24385 Dataset Release
+title: Small variant calling with GM24385
 date: "2020-10-15T00:00:00.000Z"
 description: "Small variant calling with GM24385 (GIAB HG002)"
 tags:
@@ -24,12 +24,12 @@ Challenge V2) competition.
 As an easily reproducible example we will focus on chromosome 20 of the genome
 rather than performing computation on the whole genome.
 
-> This walkthrough assumes some familiarity with standard bioinformatic tools
+> *This walkthrough assumes some familiarity with standard bioinformatic tools
 > for handling genomics data. A working installation of
 > [samtools](http://www.htslib.org/),
 > [medaka](https://github.com/nanoporetech/medaka),
 > [docker](https://www.docker.com/get-started), and the [AWS command-line
-> tools](https://aws.amazon.com/cli/) are required to follow the process below.
+> tools](https://aws.amazon.com/cli/) are required to follow the process below.*
 
 
 #### Data preparation
@@ -64,6 +64,8 @@ copy of this is available from the dataset resource:
         aws s3 --no-sign-request cp s3://ont-open-data/gm24385_2020.09/config/ref/GCA_000001405.15_GRCh38_no_alt_analysis_set${ext}
     done
 
+We have now all the inputs required to perform variant calling with medaka
+and DeepVariant.
 
 #### Running Medaka
 
@@ -171,7 +173,14 @@ With these regions masked we now obtain:
 |     METRIC.Precision   |     0.9827      |     0.9992      |
 |     METRIC.F1_Score    |     0.9639      |     0.9992      |
 
+The latest research basecallers are better able to provide accurate calls
+through low complexity regions. The example below compares basecalls produced
+with Guppy 4.0.11 and an unreleased version of the Bonito basecaller.
 
+![bonito_low_complexity_calls](./bonito_igv.png "Bonito Low Complexity Basecalls")
+
+With improvements to basecalling we therefor anticipate being able to produce
+highly accurate INDEL calls in these regions in the near future.
 
 ### Acknowledgements
 
