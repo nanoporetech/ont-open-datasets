@@ -1,18 +1,19 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Oxford Nanopore Technologies Open Datasets]]></title><description><![CDATA[Discover Open Datasets provided by Oxford Nanopore Technologies.]]></description><link>https://nanoporetech.github.io/ont-open-datasets</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 15 Oct 2020 16:58:02 GMT</lastBuildDate><item><title><![CDATA[Bonito basecalling with R9.4.1]]></title><description><![CDATA[We are please to announce the addition of
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Oxford Nanopore Technologies Open Datasets]]></title><description><![CDATA[Discover Open Datasets provided by Oxford Nanopore Technologies.]]></description><link>https://nanoporetech.github.io/ont-open-datasets</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 15 Oct 2020 19:21:17 GMT</lastBuildDate><item><title><![CDATA[Bonito basecalling with R9.4.1]]></title><description><![CDATA[We are please to announce the addition of
 bonito basecalling results to the
 GM24385 dataset. Bonito is a research-grade, open source…]]></description><link>https://nanoporetech.github.io/ont-open-datasets/bonito/</link><guid isPermaLink="false">https://nanoporetech.github.io/ont-open-datasets/bonito/</guid><pubDate>Thu, 15 Oct 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;We are please to announce the addition of
 &lt;a href=&quot;https://github.com/nanoporetech/bonito&quot;&gt;bonito&lt;/a&gt; basecalling results to the
 GM24385 dataset. Bonito is a research-grade, open source basecaller utilising
-the &lt;a href=&quot;https://pytorch.org/&quot;&gt;PyTorch&lt;/a&gt; library and; its development explores
+the &lt;a href=&quot;https://pytorch.org/&quot;&gt;PyTorch&lt;/a&gt; library; its development explores
 alternative basecalling frameworks to those use in the product-grade Guppy
 basecalling software.&lt;/p&gt;
-&lt;p&gt;The Bonito basecalling was performed using Bonito version 0.3.0, driven by the
-same &lt;a href=&quot;/ont-open-datasets/katuali_human_pipeline/&quot;&gt;katuali&lt;/a&gt; analysis pipeline as for the initial
-dataset release.  As input the Bonito basecaller was provided the
-per-chromosome &lt;code class=&quot;language-text&quot;&gt;.fast5&lt;/code&gt; files created in the initial pipeline via alignment of
-the Guppy 4.0.11 basecalls. This allows for easy comparison of results on
-subsets of the data (but may lead to subtle side-effects). For example the
-analysis data structure contains now entries of the form:&lt;/p&gt;
+&lt;p&gt;The Bonito basecalling for the GM24385 dataset was performed using Bonito
+version 0.3.0, driven by the same &lt;a href=&quot;/ont-open-datasets/katuali_human_pipeline/&quot;&gt;katuali&lt;/a&gt; analysis
+pipeline as for the initial dataset release.  The Bonito basecaller was
+provided as input the per-chromosome &lt;code class=&quot;language-text&quot;&gt;.fast5&lt;/code&gt; files created in the initial
+pipeline via alignment of the Guppy 4.0.11 basecalls. This allows for easy
+comparison of results on subsets of the data (but may lead to subtle
+side-effects). For example the analysis data structure contains now entries of
+the form:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;gm24385_2020.09/analysis/r9.4.1/{flowcell}/guppy_{suffix}/align_unfiltered/{chromosome}/bonito
 ├── align_unfiltered
 │   ├── align_to_ref.log
@@ -22,8 +23,8 @@ analysis data structure contains now entries of the form:&lt;/p&gt;
 │   └── calls2ref_stats.txt
 └── basecalls.fastq.gz&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;The file &lt;code class=&quot;language-text&quot;&gt;basecalls.fastq.gz&lt;/code&gt; contains the basecalling results from Bonito. The
-quality scores in these files have been mocked as Bonito does not as yet
-provide quality scores. Similar to the main folder structure the
+quality scores in these files have been mocked as the pre-release build of Bonito used
+does not yet provide quality scores. Similar to the main folder structure the
 &lt;code class=&quot;language-text&quot;&gt;align_unfiltered&lt;/code&gt; directory contains unfiltered alignments of the basecalls to
 the reference sequence (&lt;code class=&quot;language-text&quot;&gt;calls2ref.bam&lt;/code&gt;) along with text files summarizing the
 properties of the alignments.&lt;/p&gt;
@@ -100,7 +101,8 @@ report.write(&amp;quot;report.html&amp;quot;)&lt;/code&gt;&lt;/pre&gt;&lt;/div&g
         loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
-    &lt;/span&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Small variant calling with GM24385]]></title><description><![CDATA[In this blog post we will explore small variant calling using the previously
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;The plot indicates a roughly one-third decrease in the modal accuracy of reads.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Small variant calling with GM24385]]></title><description><![CDATA[In this blog post we will explore small variant calling using the previously
 released HG002 (GM24385 Ashkenazim Son) data release. The GM…]]></description><link>https://nanoporetech.github.io/ont-open-datasets/gm24385_snp/</link><guid isPermaLink="false">https://nanoporetech.github.io/ont-open-datasets/gm24385_snp/</guid><pubDate>Thu, 15 Oct 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;In this blog post we will explore small variant calling using the &lt;a href=&quot;/ont-open-datasets/gm24385_2020.09&quot;&gt;previously
 released&lt;/a&gt; HG002 (GM24385 Ashkenazim Son) data release.&lt;/p&gt;
 &lt;p&gt;The GM24385 dataset comprises whole genome sequencing of a well-characterised
@@ -114,9 +116,11 @@ rather than performing computation on the whole genome.&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;This walkthrough assumes some familiarity with standard bioinformatic tools
 for handling genomics data. A working installation of
 &lt;a href=&quot;http://www.htslib.org/&quot;&gt;samtools&lt;/a&gt;,
+&lt;a href=&quot;https://bedtools.readthedocs.io/en/latest/&quot;&gt;bedtools&lt;/a&gt;,
 &lt;a href=&quot;https://github.com/nanoporetech/medaka&quot;&gt;medaka&lt;/a&gt;,
 &lt;a href=&quot;https://www.docker.com/get-started&quot;&gt;docker&lt;/a&gt;, and the &lt;a href=&quot;https://aws.amazon.com/cli/&quot;&gt;AWS command-line
-tools&lt;/a&gt; are required to follow the process below.&lt;/em&gt;&lt;/p&gt;
+tools&lt;/a&gt; are required to follow the process
+below.&lt;/em&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h4&gt;Data preparation&lt;/h4&gt;
 &lt;p&gt;To start let us download the pre-aligned reads corresponding to chromosome 20
@@ -130,8 +134,8 @@ done&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;samtools merge chr20.bam PAF27096.chr20.bam PAF27462.chr20.bam
 samtools index chr20.bam&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;As an additional step we will filter the &lt;code class=&quot;language-text&quot;&gt;chr20.bam&lt;/code&gt; file to leave only primary
-alignments, removing secondard and supplementary alignments. This is necessary
-as otherwise DeepVariant, which we will use later, will process these
+alignments, removing secondary and supplementary alignments. This is necessary
+as DeepVariant, which we will use later, will otherwise process these
 additional alignments.&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;samtools view chr20.bam -F 2308 -@ 64 -b &amp;gt; chr20.primary.bam
 samtools index chr20.primary.bam&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -155,15 +159,15 @@ to allow it to function as a variant-candidate generator for DeepVariant.&lt;/p&
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;medaka_variant -i chr20.primary.bam -f GCA_000001405.15_GRCh38_no_alt_analysis_set.fasta \
     -r chr20 -t 8 -P 0 -l&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;The final two options here (&lt;code class=&quot;language-text&quot;&gt;-P 0 -l&lt;/code&gt;) instruct medaka to leave its
-substitution calls and to decompose multi-nucleotide substitutions into
-independent single nucleotide substitutions. Details of workflow employed by
-the &lt;code class=&quot;language-text&quot;&gt;medaka_variant&lt;/code&gt; program can be found in the medaka
+substitution calls unfiltered and to decompose multi-nucleotide substitutions
+into independent single nucleotide substitutions. Details of workflow employed
+by the &lt;code class=&quot;language-text&quot;&gt;medaka_variant&lt;/code&gt; program can be found in the medaka
 &lt;a href=&quot;https://nanoporetech.github.io/medaka/snp.html#&quot;&gt;documentation&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The result of running the above command will be a directory &lt;code class=&quot;language-text&quot;&gt;medaka_variant&lt;/code&gt;
 containing (amongst other files):&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;round_0_hap_mixed_phased.bam&lt;/code&gt;: alignments (as in &lt;code class=&quot;language-text&quot;&gt;chr20.primary.bam&lt;/code&gt;), tagged with a calculated haplotype,&lt;/li&gt;
-&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;round_1.vcf&lt;/code&gt;: the final output variant candidates for DeepVariant.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;&lt;code class=&quot;language-text&quot;&gt;round_0_hap_mixed_phased.bam&lt;/code&gt;&lt;/em&gt;: alignments (as in &lt;code class=&quot;language-text&quot;&gt;chr20.primary.bam&lt;/code&gt;), tagged with a calculated haplotype,&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;&lt;code class=&quot;language-text&quot;&gt;round_1.vcf&lt;/code&gt;&lt;/em&gt;: the final output variant candidates for DeepVariant.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h4&gt;Running DeepVariant&lt;/h4&gt;
 &lt;p&gt;With variant-candidate generation performed by medaka we can now use
@@ -174,7 +178,11 @@ used to run DeepVariant:&lt;/p&gt;
 chmod +x run_deepvariant.sh&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;This script simply gathers together the required inputs before executing
 DeepVariant within the docker container, it can be run simply with:&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;./run_deepvariant.sh -b medaka_variant/round_0_hap_mixed_phased.bam -v medaka_variant/round_1.vcf -r GCA_000001405.15_GRCh38_no_alt_analysis_set.fasta -o deepvariant -t 64&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;./run_deepvariant.sh \
+    -b medaka_variant/round_0_hap_mixed_phased.bam \
+    -v medaka_variant/round_1.vcf \
+    -r GCA_000001405.15_GRCh38_no_alt_analysis_set.fasta \
+    -o deepvariant -t 64&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;The final variant calls will be present at &lt;code class=&quot;language-text&quot;&gt;deepvariant/deepvariant.vcf.gz&lt;/code&gt;.&lt;/p&gt;
 &lt;h3&gt;Evaluation&lt;/h3&gt;
 &lt;p&gt;The veracity of the variant calling performed above can be obtained by
@@ -211,36 +219,6 @@ comparison. An abbreviated form is given below:&lt;/p&gt;
 &lt;td&gt;71334&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td&gt;TRUTH.TP&lt;/td&gt;
-&lt;td&gt;6680&lt;/td&gt;
-&lt;td&gt;71137&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;TRUTH.FN&lt;/td&gt;
-&lt;td&gt;4591&lt;/td&gt;
-&lt;td&gt;197&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;QUERY.TOTAL&lt;/td&gt;
-&lt;td&gt;14365&lt;/td&gt;
-&lt;td&gt;129429&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;QUERY.FP&lt;/td&gt;
-&lt;td&gt;1320&lt;/td&gt;
-&lt;td&gt;193&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;QUERY.UNK&lt;/td&gt;
-&lt;td&gt;6197&lt;/td&gt;
-&lt;td&gt;58079&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;FP.gt&lt;/td&gt;
-&lt;td&gt;335&lt;/td&gt;
-&lt;td&gt;28&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
 &lt;td&gt;METRIC.Recall&lt;/td&gt;
 &lt;td&gt;0.5927&lt;/td&gt;
 &lt;td&gt;0.9972&lt;/td&gt;
@@ -261,7 +239,10 @@ comparison. An abbreviated form is given below:&lt;/p&gt;
 The NCBI reference data includes an index of such regions, we can mask these
 regions from the comparison:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;wget https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/genome-stratifications/v2.0/GRCh38/LowComplexity/GRCh38_notinAllTandemRepeatsandHomopolymers_slop5.bed.gz
-bedtools intersect -a HG002_GRCh38_1_22_v4.1_draft_benchmark.bed -b GRCh38_notinAllTandemRepeatsandHomopolymers_slop5.bed.gz &amp;gt; HG002_GRCh38_1_22_v4.1_draft_benchmark.norepeat.bed
+bedtools intersect \
+    -a HG002_GRCh38_1_22_v4.1_draft_benchmark.bed \
+    -b GRCh38_notinAllTandemRepeatsandHomopolymers_slop5.bed.gz 
+    &amp;gt; HG002_GRCh38_1_22_v4.1_draft_benchmark.norepeat.bed
 
 docker run -it -v ${PWD}:${PWD} pkrusche/hap.py /opt/hap.py/bin/hap.py \
     ${PWD}/HG002_GRCh38_GIABv4.1.vcf.gz ${PWD}/deepvariant/deepvariant.vcf.gz \
@@ -297,7 +278,7 @@ docker run -it -v ${PWD}:${PWD} pkrusche/hap.py /opt/hap.py/bin/hap.py \
 &lt;/table&gt;
 &lt;p&gt;The latest research basecallers are better able to provide accurate calls
 through low complexity regions. The example below compares basecalls produced
-with Guppy 4.0.11 and an unreleased version of the Bonito basecaller.&lt;/p&gt;
+with Guppy 4.0.11 and the soon to be release Bonito version 0.3.0 basecaller.&lt;/p&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
       style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
@@ -329,8 +310,11 @@ with Guppy 4.0.11 and an unreleased version of the Bonito basecaller.&lt;/p&gt;
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;With improvements to basecalling we therefor anticipate being able to produce
-highly accurate INDEL calls in these regions in the near future.&lt;/p&gt;
+&lt;p&gt;The &lt;a href=&quot;http://software.broadinstitute.org/software/igv/&quot;&gt;IGV&lt;/a&gt; screenshot shows
+how the Bonito basecaller is less prone to long deletion tracks in the low
+complexity region. With improvements to basecalling we therefore anticipate
+being able to produce highly accurate INDEL calls in these regions in the near
+future.&lt;/p&gt;
 &lt;h3&gt;Acknowledgements&lt;/h3&gt;
 &lt;p&gt;We kindly acknowledge Andrew Carroll of Google Health and Benedict Paten’s
 group at the Computational Genomics Lab, UC Santa Cruz Genomics Institute for

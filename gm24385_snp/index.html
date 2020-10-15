@@ -11,9 +11,11 @@ rather than performing computation on the whole genome.</p>
 <p><em>This walkthrough assumes some familiarity with standard bioinformatic tools
 for handling genomics data. A working installation of
 <a href="http://www.htslib.org/">samtools</a>,
+<a href="https://bedtools.readthedocs.io/en/latest/">bedtools</a>,
 <a href="https://github.com/nanoporetech/medaka">medaka</a>,
 <a href="https://www.docker.com/get-started">docker</a>, and the <a href="https://aws.amazon.com/cli/">AWS command-line
-tools</a> are required to follow the process below.</em></p>
+tools</a> are required to follow the process
+below.</em></p>
 </blockquote>
 <h4>Data preparation</h4>
 <p>To start let us download the pre-aligned reads corresponding to chromosome 20
@@ -27,8 +29,8 @@ done</code></pre></div>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">samtools merge chr20.bam PAF27096.chr20.bam PAF27462.chr20.bam
 samtools index chr20.bam</code></pre></div>
 <p>As an additional step we will filter the <code class="language-text">chr20.bam</code> file to leave only primary
-alignments, removing secondard and supplementary alignments. This is necessary
-as otherwise DeepVariant, which we will use later, will process these
+alignments, removing secondary and supplementary alignments. This is necessary
+as DeepVariant, which we will use later, will otherwise process these
 additional alignments.</p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">samtools view chr20.bam -F 2308 -@ 64 -b &gt; chr20.primary.bam
 samtools index chr20.primary.bam</code></pre></div>
@@ -52,15 +54,15 @@ to allow it to function as a variant-candidate generator for DeepVariant.</p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">medaka_variant -i chr20.primary.bam -f GCA_000001405.15_GRCh38_no_alt_analysis_set.fasta \
     -r chr20 -t 8 -P 0 -l</code></pre></div>
 <p>The final two options here (<code class="language-text">-P 0 -l</code>) instruct medaka to leave its
-substitution calls and to decompose multi-nucleotide substitutions into
-independent single nucleotide substitutions. Details of workflow employed by
-the <code class="language-text">medaka_variant</code> program can be found in the medaka
+substitution calls unfiltered and to decompose multi-nucleotide substitutions
+into independent single nucleotide substitutions. Details of workflow employed
+by the <code class="language-text">medaka_variant</code> program can be found in the medaka
 <a href="https://nanoporetech.github.io/medaka/snp.html#">documentation</a>.</p>
 <p>The result of running the above command will be a directory <code class="language-text">medaka_variant</code>
 containing (amongst other files):</p>
 <ul>
-<li><code class="language-text">round_0_hap_mixed_phased.bam</code>: alignments (as in <code class="language-text">chr20.primary.bam</code>), tagged with a calculated haplotype,</li>
-<li><code class="language-text">round_1.vcf</code>: the final output variant candidates for DeepVariant.</li>
+<li><em><code class="language-text">round_0_hap_mixed_phased.bam</code></em>: alignments (as in <code class="language-text">chr20.primary.bam</code>), tagged with a calculated haplotype,</li>
+<li><em><code class="language-text">round_1.vcf</code></em>: the final output variant candidates for DeepVariant.</li>
 </ul>
 <h4>Running DeepVariant</h4>
 <p>With variant-candidate generation performed by medaka we can now use
@@ -71,7 +73,11 @@ used to run DeepVariant:</p>
 chmod +x run_deepvariant.sh</code></pre></div>
 <p>This script simply gathers together the required inputs before executing
 DeepVariant within the docker container, it can be run simply with:</p>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">./run_deepvariant.sh -b medaka_variant/round_0_hap_mixed_phased.bam -v medaka_variant/round_1.vcf -r GCA_000001405.15_GRCh38_no_alt_analysis_set.fasta -o deepvariant -t 64</code></pre></div>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">./run_deepvariant.sh \
+    -b medaka_variant/round_0_hap_mixed_phased.bam \
+    -v medaka_variant/round_1.vcf \
+    -r GCA_000001405.15_GRCh38_no_alt_analysis_set.fasta \
+    -o deepvariant -t 64</code></pre></div>
 <p>The final variant calls will be present at <code class="language-text">deepvariant/deepvariant.vcf.gz</code>.</p>
 <h3>Evaluation</h3>
 <p>The veracity of the variant calling performed above can be obtained by
@@ -108,36 +114,6 @@ comparison. An abbreviated form is given below:</p>
 <td>71334</td>
 </tr>
 <tr>
-<td>TRUTH.TP</td>
-<td>6680</td>
-<td>71137</td>
-</tr>
-<tr>
-<td>TRUTH.FN</td>
-<td>4591</td>
-<td>197</td>
-</tr>
-<tr>
-<td>QUERY.TOTAL</td>
-<td>14365</td>
-<td>129429</td>
-</tr>
-<tr>
-<td>QUERY.FP</td>
-<td>1320</td>
-<td>193</td>
-</tr>
-<tr>
-<td>QUERY.UNK</td>
-<td>6197</td>
-<td>58079</td>
-</tr>
-<tr>
-<td>FP.gt</td>
-<td>335</td>
-<td>28</td>
-</tr>
-<tr>
 <td>METRIC.Recall</td>
 <td>0.5927</td>
 <td>0.9972</td>
@@ -158,7 +134,10 @@ comparison. An abbreviated form is given below:</p>
 The NCBI reference data includes an index of such regions, we can mask these
 regions from the comparison:</p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">wget https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/genome-stratifications/v2.0/GRCh38/LowComplexity/GRCh38_notinAllTandemRepeatsandHomopolymers_slop5.bed.gz
-bedtools intersect -a HG002_GRCh38_1_22_v4.1_draft_benchmark.bed -b GRCh38_notinAllTandemRepeatsandHomopolymers_slop5.bed.gz &gt; HG002_GRCh38_1_22_v4.1_draft_benchmark.norepeat.bed
+bedtools intersect \
+    -a HG002_GRCh38_1_22_v4.1_draft_benchmark.bed \
+    -b GRCh38_notinAllTandemRepeatsandHomopolymers_slop5.bed.gz 
+    &gt; HG002_GRCh38_1_22_v4.1_draft_benchmark.norepeat.bed
 
 docker run -it -v ${PWD}:${PWD} pkrusche/hap.py /opt/hap.py/bin/hap.py \
     ${PWD}/HG002_GRCh38_GIABv4.1.vcf.gz ${PWD}/deepvariant/deepvariant.vcf.gz \
@@ -194,7 +173,7 @@ docker run -it -v ${PWD}:${PWD} pkrusche/hap.py /opt/hap.py/bin/hap.py \
 </table>
 <p>The latest research basecallers are better able to provide accurate calls
 through low complexity regions. The example below compares basecalls produced
-with Guppy 4.0.11 and an unreleased version of the Bonito basecaller.</p>
+with Guppy 4.0.11 and the soon to be release Bonito version 0.3.0 basecaller.</p>
 <p><span
       class="gatsby-resp-image-wrapper"
       style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; "
@@ -226,8 +205,11 @@ with Guppy 4.0.11 and an unreleased version of the Bonito basecaller.</p>
       />
   </a>
     </span></p>
-<p>With improvements to basecalling we therefor anticipate being able to produce
-highly accurate INDEL calls in these regions in the near future.</p>
+<p>The <a href="http://software.broadinstitute.org/software/igv/">IGV</a> screenshot shows
+how the Bonito basecaller is less prone to long deletion tracks in the low
+complexity region. With improvements to basecalling we therefore anticipate
+being able to produce highly accurate INDEL calls in these regions in the near
+future.</p>
 <h3>Acknowledgements</h3>
 <p>We kindly acknowledge Andrew Carroll of Google Health and Benedict Paten’s
 group at the Computational Genomics Lab, UC Santa Cruz Genomics Institute for
