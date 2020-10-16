@@ -93,4 +93,4 @@ can be used to plot a kernel density estimate for the read alignment accuracy:
 
 ![accuracy comparison](./accuracy.png "Basecalls: Bonito CTC-CRF vs. Guppy 4.0.11")
 
-The plot indicates a roughly one-third decrease in the modal accuracy of reads.
+The plot indicates a decrease of one-third in the modal error of reads.
