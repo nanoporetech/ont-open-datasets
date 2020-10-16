@@ -125,7 +125,7 @@ Bottle](https://www.nist.gov/programs-projects/genome-bottle) truth sets for
 the GM24385 sample. The truth sets can be downloaded from the
 [NCBI](https://www.ncbi.nlm.nih.gov/) repository:
 
-    for ext in .bed .bedgz .bed.gz.tbi .vcf.gz .gvf.gz.tbi; do
+    for ext in .bed .bedgz .bed.gz.tbi .vcf.gz .vcf.gz.tbi; do
         wget https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/AshkenazimTrio/HG002_NA24385_son/NISTv4.1/GRCh38/HG002_GRCh38_1_22_v4.1_draft_benchmark${ext}
     done
 
@@ -135,9 +135,9 @@ of the variant calls made by DeepVariant. Hap.py is most easily run using the
 docker container provided by it's authors:
 
     docker run -it -v ${PWD}:${PWD} pkrusche/hap.py /opt/hap.py/bin/hap.py \
-        ${PWD}/HG002_GRCh38_GIABv4.1.vcf.gz ${PWD}/deepvariant/deepvariant.vcf.gz \
+        ${PWD}/HG002_GRCh38_1_22_v4.1_draft_benchmark.vcf.gz ${PWD}/deepvariant/deepvariant.vcf.gz \
         -f ${PWD}/HG002_GRCh38_1_22_v4.1_draft_benchmark.bed \
-        -r ${PWD}/truths/GRCh38_no_alt_chr20.fa \
+        -r ${PWD}/GCA_000001405.15_GRCh38_no_alt_analysis_set.fasta \
         -o happy_out --pass-only -l chr20 --engine=vcfeval --threads=20
 
 The output of the above will be a table summarising the results of the
