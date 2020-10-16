@@ -62,8 +62,8 @@ To perform variant calling we also require the human reference sequence, the
 same sequence as used to create the alignment files prepared above. An indexed
 copy of this is available from the dataset resource:
 
-    for ext in .fasta .fasta.fai
-        aws s3 --no-sign-request cp s3://ont-open-data/gm24385_2020.09/config/ref/GCA_000001405.15_GRCh38_no_alt_analysis_set${ext}
+    for ext in .fasta .fasta.fai; do
+        aws s3 --no-sign-request cp s3://ont-open-data/gm24385_2020.09/config/ref/GCA_000001405.15_GRCh38_no_alt_analysis_set${ext} .
     done
 
 We have now all the inputs required to perform variant calling with medaka
