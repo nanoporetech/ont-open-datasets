@@ -10,7 +10,7 @@ tags:
 ---
 
 In this blog post we will explore small variant calling using the [previously
-released](/gm24385_2020.09) HG002 (GM24385 Ashkenazim Son) data release.
+released](/gm24385_2020.09) HG002 (GM24385 Ashkenazi Son) data release.
 
 The GM24385 dataset comprises whole genome sequencing of a well-characterised
 human cell line. It therefore provides a useful benchmark sample; the cell line
@@ -125,7 +125,7 @@ Bottle](https://www.nist.gov/programs-projects/genome-bottle) truth sets for
 the GM24385 sample. The truth sets can be downloaded from the
 [NCBI](https://www.ncbi.nlm.nih.gov/) repository:
 
-    for ext in .bed .bedgz .bed.gz.tbi .vcf.gz .gvf.gz.tbi
+    for ext in .bed .bedgz .bed.gz.tbi .vcf.gz .gvf.gz.tbi; do
         wget https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/AshkenazimTrio/HG002_NA24385_son/NISTv4.1/GRCh38/HG002_GRCh38_1_22_v4.1_draft_benchmark${ext}
     done
 
