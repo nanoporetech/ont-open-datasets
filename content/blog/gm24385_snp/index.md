@@ -40,9 +40,9 @@ To start let us download the pre-aligned reads corresponding to chromosome 20
 from the dataset resource (see our [tutorial](/tutorials) FAQs) for more
 information on downloading data):
 
-    for ext in .bam .bam.bai
+    for ext in .bam .bam.bai; do
         aws s3 --no-sign-request cp s3://ont-open-data/gm24385_2020.09/analysis/r9.4.1/20200914_1354_6B_PAF27096_e7c9eae6/guppy_v4.0.11_r9.4.1_hac_prom/align_unfiltered/chr20/calls2ref${ext} PAF27096.chr20${ext}
-        aws s3 --no-sign-request cp s3://ont-open-data/gm24385_2020.09/analysis/r9.4.1/20200914_1357_1-E11-H11_PAF27462_d3c9678e/guppy_v4.0.11_r9.4.1_hac_prom/align_unfiltered/chr20/calls2ref${ext} PAF27462.chr20$ext}
+        aws s3 --no-sign-request cp s3://ont-open-data/gm24385_2020.09/analysis/r9.4.1/20200914_1357_1-E11-H11_PAF27462_d3c9678e/guppy_v4.0.11_r9.4.1_hac_prom/align_unfiltered/chr20/calls2ref${ext} PAF27462.chr20${ext}
     done
 
 and merge these into a single `.bam` file:
@@ -125,7 +125,7 @@ Bottle](https://www.nist.gov/programs-projects/genome-bottle) truth sets for
 the GM24385 sample. The truth sets can be downloaded from the
 [NCBI](https://www.ncbi.nlm.nih.gov/) repository:
 
-    for ext in .bed .bedgz .bed.gz.tbi .vcf.gz .vcf.gz.tbi; do
+    for ext in .bed .bed.gz .bed.gz.tbi .vcf.gz .vcf.gz.tbi; do
         wget https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/AshkenazimTrio/HG002_NA24385_son/NISTv4.1/GRCh38/HG002_GRCh38_1_22_v4.1_draft_benchmark${ext}
     done
 
