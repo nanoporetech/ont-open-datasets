@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Oxford Nanopore Technologies Open Datasets]]></title><description><![CDATA[Discover Open Datasets provided by Oxford Nanopore Technologies.]]></description><link>https://nanoporetech.github.io/ont-open-datasets</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 25 Oct 2020 19:46:26 GMT</lastBuildDate><item><title><![CDATA[Bonito basecalling with R9.4.1]]></title><description><![CDATA[We are please to announce the addition of
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Oxford Nanopore Technologies Open Datasets]]></title><description><![CDATA[Discover Open Datasets provided by Oxford Nanopore Technologies.]]></description><link>https://nanoporetech.github.io/ont-open-datasets</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 28 Oct 2020 13:56:33 GMT</lastBuildDate><item><title><![CDATA[Bonito basecalling with R9.4.1]]></title><description><![CDATA[We are please to announce the addition of
 bonito basecalling results to the
 GM24385 dataset. Bonito is a research-grade, open source…]]></description><link>https://nanoporetech.github.io/ont-open-datasets/bonito/</link><guid isPermaLink="false">https://nanoporetech.github.io/ont-open-datasets/bonito/</guid><pubDate>Thu, 15 Oct 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;We are please to announce the addition of
 &lt;a href=&quot;https://github.com/nanoporetech/bonito&quot;&gt;bonito&lt;/a&gt; basecalling results to the
@@ -6,8 +6,10 @@ GM24385 dataset. Bonito is a research-grade, open source basecaller utilising
 the &lt;a href=&quot;https://pytorch.org/&quot;&gt;PyTorch&lt;/a&gt; library; its development explores
 alternative basecalling frameworks to those use in the product-grade Guppy
 basecalling software.&lt;/p&gt;
-&lt;p&gt;The Bonito basecalling for the GM24385 dataset was performed using Bonito
-version 0.3.0, driven by the same &lt;a href=&quot;/ont-open-datasets/katuali_human_pipeline/&quot;&gt;katuali&lt;/a&gt; analysis
+&lt;p&gt;The Bonito basecalling for the GM24385 dataset was performed using an early
+version 0.3.0 (&lt;em&gt;amendment 2020-10-28: the version used implements a different
+algorithm to that in the released Bonito v0.3.0&lt;/em&gt;),
+driven by the same &lt;a href=&quot;/ont-open-datasets/katuali_human_pipeline/&quot;&gt;katuali&lt;/a&gt; analysis
 pipeline as for the initial dataset release.  The Bonito basecaller was
 provided as input the per-chromosome &lt;code class=&quot;language-text&quot;&gt;.fast5&lt;/code&gt; files created in the initial
 pipeline via alignment of the Guppy 4.0.11 basecalls. This allows for easy
