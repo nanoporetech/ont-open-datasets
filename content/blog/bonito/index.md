@@ -16,8 +16,10 @@ the [PyTorch](https://pytorch.org/) library; its development explores
 alternative basecalling frameworks to those use in the product-grade Guppy
 basecalling software.
 
-The Bonito basecalling for the GM24385 dataset was performed using Bonito
-version 0.3.0, driven by the same [katuali](/katuali_human_pipeline/) analysis
+The Bonito basecalling for the GM24385 dataset was performed using an early
+version 0.3.0 (*amendment 2020-10-28: the version used implements a different
+algorithm to that in the released Bonito v0.3.0*),
+driven by the same [katuali](/katuali_human_pipeline/) analysis
 pipeline as for the initial dataset release.  The Bonito basecaller was
 provided as input the per-chromosome `.fast5` files created in the initial
 pipeline via alignment of the Guppy 4.0.11 basecalls. This allows for easy
