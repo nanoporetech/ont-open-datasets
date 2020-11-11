@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Oxford Nanopore Technologies Open Datasets]]></title><description><![CDATA[Discover Open Datasets provided by Oxford Nanopore Technologies.]]></description><link>https://nanoporetech.github.io/ont-open-datasets</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 30 Oct 2020 10:07:38 GMT</lastBuildDate><item><title><![CDATA[Bonito basecalling with R9.4.1]]></title><description><![CDATA[Updated 2020-10-30: This page was edited to reflect the formal release of Bonito v0.3.0 We are please to announce the addition of
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Oxford Nanopore Technologies Open Datasets]]></title><description><![CDATA[Discover Open Datasets provided by Oxford Nanopore Technologies.]]></description><link>https://nanoporetech.github.io/ont-open-datasets</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 11 Nov 2020 15:21:49 GMT</lastBuildDate><item><title><![CDATA[Bonito basecalling with R9.4.1]]></title><description><![CDATA[Updated 2020-10-30: This page was edited to reflect the formal release of Bonito v0.3.0 We are please to announce the addition of
 bonito…]]></description><link>https://nanoporetech.github.io/ont-open-datasets/bonito/</link><guid isPermaLink="false">https://nanoporetech.github.io/ont-open-datasets/bonito/</guid><pubDate>Thu, 15 Oct 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;strong&gt;Updated 2020-10-30: This page was edited to reflect the formal release of Bonito v0.3.0&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;We are please to announce the addition of
 &lt;a href=&quot;https://github.com/nanoporetech/bonito&quot;&gt;bonito&lt;/a&gt; basecalling results to the
@@ -182,8 +182,11 @@ DeepVariant within the docker container, it can be run simply with:&lt;/p&gt;
     -b medaka_variant/round_0_hap_mixed_phased.bam \
     -v medaka_variant/round_1.vcf \
     -r GCA_000001405.15_GRCh38_no_alt_analysis_set.fasta \
-    -o deepvariant -t 64&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;The final variant calls will be present at &lt;code class=&quot;language-text&quot;&gt;deepvariant/deepvariant.vcf.gz&lt;/code&gt;.&lt;/p&gt;
+    -o deepvariant -t 64 -q&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The final variant calls will be present at &lt;code class=&quot;language-text&quot;&gt;deepvariant/deepvariant.vcf.gz&lt;/code&gt;.
+The &lt;code class=&quot;language-text&quot;&gt;-q&lt;/code&gt; option here runs a “high quality” version of the DeepVariant
+calculation; this version incurs a runtime cost of aaround a factor of
+four and gives marginable improvement in results.&lt;/p&gt;
 &lt;h3&gt;Evaluation&lt;/h3&gt;
 &lt;p&gt;The veracity of the variant calling performed above can be obtained by
 comparing the results to the &lt;a href=&quot;https://www.nist.gov/programs-projects/genome-bottle&quot;&gt;Genome In A

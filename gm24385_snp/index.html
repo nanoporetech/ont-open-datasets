@@ -77,8 +77,11 @@ DeepVariant within the docker container, it can be run simply with:</p>
     -b medaka_variant/round_0_hap_mixed_phased.bam \
     -v medaka_variant/round_1.vcf \
     -r GCA_000001405.15_GRCh38_no_alt_analysis_set.fasta \
-    -o deepvariant -t 64</code></pre></div>
-<p>The final variant calls will be present at <code class="language-text">deepvariant/deepvariant.vcf.gz</code>.</p>
+    -o deepvariant -t 64 -q</code></pre></div>
+<p>The final variant calls will be present at <code class="language-text">deepvariant/deepvariant.vcf.gz</code>.
+The <code class="language-text">-q</code> option here runs a “high quality” version of the DeepVariant
+calculation; this version incurs a runtime cost of aaround a factor of
+four and gives marginable improvement in results.</p>
 <h3>Evaluation</h3>
 <p>The veracity of the variant calling performed above can be obtained by
 comparing the results to the <a href="https://www.nist.gov/programs-projects/genome-bottle">Genome In A
