@@ -19,7 +19,7 @@ to the reference genome are provided along with statistics derived from these.
 
 Highlights of the dataset include:
 
-- Demonstration of >200Gb from improved flowcell reliabilit,
+- Demonstration of >200Gb from improved flowcell reliability,
 - Inclusion of data from the new Ultra Long Kit.
 
 A brief report comparing the current release to the previous can be found
