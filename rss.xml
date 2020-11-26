@@ -1,4 +1,75 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Oxford Nanopore Technologies Open Datasets]]></title><description><![CDATA[Discover Open Datasets provided by Oxford Nanopore Technologies.]]></description><link>https://nanoporetech.github.io/ont-open-datasets</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 11 Nov 2020 15:21:49 GMT</lastBuildDate><item><title><![CDATA[Bonito basecalling with R9.4.1]]></title><description><![CDATA[Updated 2020-10-30: This page was edited to reflect the formal release of Bonito v0.3.0 We are please to announce the addition of
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Oxford Nanopore Technologies Open Datasets]]></title><description><![CDATA[Discover Open Datasets provided by Oxford Nanopore Technologies.]]></description><link>https://nanoporetech.github.io/ont-open-datasets</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 26 Nov 2020 11:57:14 GMT</lastBuildDate><item><title><![CDATA[November 2020 GM24385 Dataset Release]]></title><description><![CDATA[We are happy to annouce an updated release of nanopore sequencing
+of the Genome in a Bottle sample GM24385. Multiple PromethION flowcells…]]></description><link>https://nanoporetech.github.io/ont-open-datasets/gm24385_2020.11/</link><guid isPermaLink="false">https://nanoporetech.github.io/ont-open-datasets/gm24385_2020.11/</guid><pubDate>Thu, 26 Nov 2020 11:38:00 GMT</pubDate><content:encoded>&lt;p&gt;We are happy to annouce an updated release of nanopore sequencing
+of the Genome in a Bottle sample GM24385.&lt;/p&gt;
+&lt;p&gt;Multiple PromethION flowcells using R9.4.1 nanopores were used, along with two
+different sample preparation methods. The direct sequencer output is included,
+raw signal data stored in .fast5 files and basecalled data in .fastq file.
+Additional secondary analyses are included, notably alignments of sequence data
+to the reference genome are provided along with statistics derived from these.&lt;/p&gt;
+&lt;p&gt;Highlights of the dataset include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Demonstration of &gt;200Gb from improved flowcell reliabilit,&lt;/li&gt;
+&lt;li&gt;Inclusion of data from the new Ultra Long Kit.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;A brief report comparing the current release to the previous can be found
+&lt;a href=&quot;/ont-open-datasets/misc/gm24385_compare.html&quot;&gt;here&lt;/a&gt;. &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Whats included?&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The dataset comprises data from multiple R9.4.1 flowcells.&lt;/p&gt;
+&lt;p&gt;The initial sequencer outputs are included in self container directories.
+In addition derived outputs from an automated pipeline are stored
+separately.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Details concerning sample preparations&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Below is described briefly the method of analyte preparation. Standard, published
+protocols were followed with no intentional deviation.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;The following cell line samples were obtained from the NIGMS Human Genetic Cell
+Repository at the Coriell Institute for Medical Research: GM24385&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;The extracted DNA was subjected to one of two protocols. The first protocol
+entailed:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;High molecular weight DNA from GM24385 lymphoblastoid cells was prepared by
+&lt;a href=&quot;https://www.evotec.com/en&quot;&gt;Evotec&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.circulomics.com/store/Short-Read-Eliminator-XL-p138401730&quot;&gt;Circulomics Short Read Eliminator XL&lt;/a&gt;
+protocol was used to deplete DNA fragments &amp;#x3C; 40kb in length.&lt;/li&gt;
+&lt;li&gt;DNA was end repaired and dA tailed prior to LSK based library preparation.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The second protocol used the new Ultralong Sequencing Kit (ULK).&lt;/p&gt;
+&lt;p&gt;In both cases sequencing was performed using PromethION device.&lt;/p&gt;
+&lt;p&gt;The dataset comprises multiple flowcells for each pore:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&quot;center&quot;&gt;Treatmeant&lt;/th&gt;
+&lt;th align=&quot;center&quot;&gt;Flowcells&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align=&quot;center&quot;&gt;SRE&lt;/td&gt;
+&lt;td align=&quot;center&quot;&gt;PAG07162, PAG07165&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;center&quot;&gt;ULK&lt;/td&gt;
+&lt;td align=&quot;center&quot;&gt;PAG07506&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Location of the data&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The data is located in an Amazon Webservice S3 bucket at:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;s3://ont-open-data/gm24385_2020.11/&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;See the &lt;a href=&quot;/ont-open-datasets/tutorials/&quot;&gt;tutorials&lt;/a&gt; page for information on downloading the dataset.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Description of available data&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The uploaded dataset has been prepared using a snakemake pipeline to:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Align basecalls to reference sequence. All primary, secondary and
+supplementary alignments are kept&lt;/li&gt;
+&lt;li&gt;Filter .bam file to list of regions defined in configuration file
+retaining only primary alignments.&lt;/li&gt;
+&lt;li&gt;Produce read statistics from per-region .bams.&lt;/li&gt;
+&lt;li&gt;Repack/group source .fast5 files according to primary alignment .bams
+to produce per-region .fast5 file sets.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;For more details see our &lt;a href=&quot;/ont-open-datasets/katuali_human_pipeline/&quot;&gt;post&lt;/a&gt; detailing the
+pipeline and its outputs.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Bonito basecalling with R9.4.1]]></title><description><![CDATA[Updated 2020-10-30: This page was edited to reflect the formal release of Bonito v0.3.0 We are please to announce the addition of
 bonito…]]></description><link>https://nanoporetech.github.io/ont-open-datasets/bonito/</link><guid isPermaLink="false">https://nanoporetech.github.io/ont-open-datasets/bonito/</guid><pubDate>Thu, 15 Oct 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;strong&gt;Updated 2020-10-30: This page was edited to reflect the formal release of Bonito v0.3.0&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;We are please to announce the addition of
 &lt;a href=&quot;https://github.com/nanoporetech/bonito&quot;&gt;bonito&lt;/a&gt; basecalling results to the
@@ -182,7 +253,7 @@ DeepVariant within the docker container, it can be run simply with:&lt;/p&gt;
     -b medaka_variant/round_0_hap_mixed_phased.bam \
     -v medaka_variant/round_1.vcf \
     -r GCA_000001405.15_GRCh38_no_alt_analysis_set.fasta \
-    -o deepvariant -t 64 -q&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+    -o deep_variant -t 64 -q&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;The final variant calls will be present at &lt;code class=&quot;language-text&quot;&gt;deepvariant/deepvariant.vcf.gz&lt;/code&gt;.
 The &lt;code class=&quot;language-text&quot;&gt;-q&lt;/code&gt; option here runs a “high quality” version of the DeepVariant
 calculation; this version incurs a runtime cost of aaround a factor of
