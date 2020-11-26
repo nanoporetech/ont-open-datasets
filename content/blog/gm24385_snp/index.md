@@ -113,7 +113,7 @@ DeepVariant within the docker container, it can be run simply with:
         -b medaka_variant/round_0_hap_mixed_phased.bam \
         -v medaka_variant/round_1.vcf \
         -r GCA_000001405.15_GRCh38_no_alt_analysis_set.fasta \
-        -o deepvariant -t 64 -q
+        -o deep_variant -t 64 -q
 
 The final variant calls will be present at `deepvariant/deepvariant.vcf.gz`.
 The `-q` option here runs a "high quality" version of the DeepVariant
