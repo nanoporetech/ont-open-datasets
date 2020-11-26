@@ -1,6 +1,12 @@
 const path = require(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
 
+// Enable development support for serving HTML from `./static` folder
+const express = require(`express`)
+exports.onCreateDevServer = ({ app }) => {
+  app.use(express.static(`static`))
+}
+
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions
 
