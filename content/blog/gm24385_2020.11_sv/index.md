@@ -1,7 +1,7 @@
 ---
 title: Structural variation calling with GM24385
 date: "2020-12-01T16:02:00.000Z"
-description: "Structural variation calling with GM24385 (GIAB HG002) and the 2020.09 dataset"
+description: "Structural variation calling with GM24385 (GIAB HG002) and the 2020.11 dataset"
 tags:
   - datasets
   - human cell-line
@@ -9,8 +9,9 @@ tags:
   - variant calling
 ---
 
-In this blog post we will explore structural variant calling using the [recently
-released](/gm24385_2020.11) HG002 (GM24385 Ashkenazi Son) data release.
+In this blog post we will explore structural variant calling using the
+[recently released](/gm24385_2020.11) HG002 (GM24385 Ashkenazi Son) data
+release.
 
 The GM24385 dataset comprises whole genome sequencing of a well-characterised
 human cell line. It therefore provides a useful benchmark sample; the cell line
@@ -26,7 +27,8 @@ GM24385 2020.11 data release.
 
 > *This walkthrough assumes some familiarity with standard bioinformatic tools
 > for handling genomics data. A working installation of
-> [samtools](http://www.htslib.org/), [snakemake](https://snakemake.readthedocs.io/en/stable/),
+> [samtools](http://www.htslib.org/),
+> [snakemake](https://snakemake.readthedocs.io/en/stable/),
 > [git](https://git-scm.com/), and the [AWS command-line
 > tools](https://aws.amazon.com/cli/) are required to follow the process
 > below.*
@@ -34,10 +36,13 @@ GM24385 2020.11 data release.
 
 #### Data preparation
 
-We will start by downloading Guppy 4.0.11 basecalls from a PromethION sequencing experiment
-(see our [tutorial](/tutorials) FAQs) for more information on downloading data):
+We will start by downloading Guppy 4.0.11 basecalls from a PromethION
+sequencing experiment (see our [tutorial](/tutorials) FAQs) for more
+information on downloading data):
 
-    aws s3 --no-sign-request cp s3://ont-open-data/gm24385_2020.11/analysis/r9.4.1/20201026_1644_2-E5-H5_PAG07162_d7f262d5/guppy_v4.0.11_r9.4.1_hac_prom/basecalls.fastq.gz .
+    aws s3 --no-sign-request cp \
+        s3://ont-open-data/gm24385_2020.11/analysis/r9.4.1/20201026_1644_2-E5-H5_PAG07162_d7f262d5/guppy_v4.0.11_r9.4.1_hac_prom/basecalls.fastq.gz \
+        basecalls.fastq.gz
 
 The `.fastq` file downloaded above contains the QC pass calls from the experiment
 amounting to around 200 Gbases.
@@ -55,7 +60,11 @@ To perform structural variant calling Oxford Nanopore Technologies recommends us
 software we use it with its default settings:
 
     conda activate pipeline-structural-variation-v2
-    snakemake call --config input_fastq=basecalls.fastq.gz reference_fasta=human_g1k_v37.fasta threads=76 sample_name=PAG07162-hg37
+    snakemake call --config \
+        input_fastq=basecalls.fastq.gz \
+        reference_fasta=human_g1k_v37.fasta \
+        threads=76 \
+        sample_name=PAG07162-hg37
 
 The useful output for our purposes is the single Variant Call Format file; a copy
 of the file is available in the dataset S3 bucket at:
@@ -72,7 +81,8 @@ the GM24385 sample. The truth sets can be downloaded from the
 
     truth_name="HG002_SVs_Tier1_v0.6"
     for ext in ".vcf.gz", ".vcf.gz.tbi", ".bed"; do
-        wget -O $truth_name$ext https://ftp-trace.ncbi.nlm.nih.gov/giab/ftp/data/AshkenazimTrio/analysis/NIST_SVs_Integration_v0.6/$truth_name$ext
+        wget -O $truth_name$ext \
+            https://ftp-trace.ncbi.nlm.nih.gov/giab/ftp/data/AshkenazimTrio/analysis/NIST_SVs_Integration_v0.6/$truth_name$ext
     done
 
 With these reference data we will use
@@ -84,11 +94,15 @@ of the variant calls made by the calling pipeline:
     reference="human_g1k_v37.fasta"
     input_vcf="PAG07162-hg37_cutesv_filtered.vcf.gz"
     output_dir="truvari"
-    truvari bench --passonly -b $truth_vcf --includebed $truth_bed --pctsim 0 -c $input_vcf -f $reference -o $output_dir
+    truvari bench --passonly --pctsim 0 \
+        -b $truth_vcf --includebed $truth_bed \
+        -f $reference -c $input_vcf \
+        -o $output_dir
 
-Truvari outputs precision and recall figures for the structural variants.
-With a little work (detailed in the [EPI2MELabs Structural Variation Benchmarking](https://epi2me-labs.github.io/) tutorial)
-we can separate the counts for deletion and insertion (including duplication) variants:
+Truvari outputs precision and recall figures for the structural variants.  With
+a little work (detailed in the [EPI2MELabs Structural Variation
+Benchmarking](https://epi2me-labs.github.io/) tutorial) we can separate the
+counts for deletion and insertion (including duplication) variants:
 
 |     Type        |     Deletions   |   Insertions    |
 |-----------------|-----------------|-----------------|
