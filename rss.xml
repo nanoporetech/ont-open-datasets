@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Oxford Nanopore Technologies Open Datasets]]></title><description><![CDATA[Discover Open Datasets provided by Oxford Nanopore Technologies.]]></description><link>https://nanoporetech.github.io/ont-open-datasets</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 26 Nov 2020 14:47:20 GMT</lastBuildDate><item><title><![CDATA[November 2020 GM24385 Dataset Release]]></title><description><![CDATA[We are happy to annouce an updated release of nanopore sequencing
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Oxford Nanopore Technologies Open Datasets]]></title><description><![CDATA[Discover Open Datasets provided by Oxford Nanopore Technologies.]]></description><link>https://nanoporetech.github.io/ont-open-datasets</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 01 Dec 2020 16:00:20 GMT</lastBuildDate><item><title><![CDATA[November 2020 GM24385 Dataset Release]]></title><description><![CDATA[We are happy to annouce an updated release of nanopore sequencing
 of the Genome in a Bottle sample GM24385. Multiple PromethION flowcells…]]></description><link>https://nanoporetech.github.io/ont-open-datasets/gm24385_2020.11/</link><guid isPermaLink="false">https://nanoporetech.github.io/ont-open-datasets/gm24385_2020.11/</guid><pubDate>Thu, 26 Nov 2020 11:38:00 GMT</pubDate><content:encoded>&lt;p&gt;We are happy to annouce an updated release of nanopore sequencing
 of the Genome in a Bottle sample GM24385.&lt;/p&gt;
 &lt;p&gt;Multiple PromethION flowcells using R9.4.1 nanopores were used, along with two
@@ -173,7 +173,121 @@ report.write(&amp;quot;report.html&amp;quot;)&lt;/code&gt;&lt;/pre&gt;&lt;/div&g
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;The plot indicates a decrease of one-third in the modal error of reads.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Small variant calling with GM24385]]></title><description><![CDATA[In this blog post we will explore small variant calling using the previously
+&lt;p&gt;The plot indicates a decrease of one-third in the modal error of reads.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Structural variatioon calling with GM24385]]></title><description><![CDATA[In this blog post we will explore structural variant calling using the recently
+released HG002 (GM24385 Ashkenazi Son) data release. The GM…]]></description><link>https://nanoporetech.github.io/ont-open-datasets/gm24385_2020.11_sv/</link><guid isPermaLink="false">https://nanoporetech.github.io/ont-open-datasets/gm24385_2020.11_sv/</guid><pubDate>Thu, 15 Oct 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;In this blog post we will explore structural variant calling using the &lt;a href=&quot;/ont-open-datasets/gm24385_2020.11&quot;&gt;recently
+released&lt;/a&gt; HG002 (GM24385 Ashkenazi Son) data release.&lt;/p&gt;
+&lt;p&gt;The GM24385 dataset comprises whole genome sequencing of a well-characterised
+human cell line. It therefore provides a useful benchmark sample; the cell line
+was also used as a “seen” sample in the recent
+&lt;a href=&quot;PrecisionFDA%20Truth%0AChallenge%20V2&quot;&gt;https://precision.fda.gov/challenges/10/view/results&lt;/a&gt; competition for small variant calling.&lt;/p&gt;
+&lt;h3&gt;Structural variant calling with lra and cuteSV&lt;/h3&gt;
+&lt;p&gt;As an easily reproducible example we will focus on a single flowcell of the
+GM24385 2020.11 data release.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;This walkthrough assumes some familiarity with standard bioinformatic tools
+for handling genomics data. A working installation of
+&lt;a href=&quot;http://www.htslib.org/&quot;&gt;samtools&lt;/a&gt;, (snakemake)[https://snakemake.readthedocs.io/en/stable/],
+&lt;a href=&quot;https://git-scm.com/&quot;&gt;git&lt;/a&gt;, and the &lt;a href=&quot;https://aws.amazon.com/cli/&quot;&gt;AWS command-line
+tools&lt;/a&gt; are required to follow the process
+below.&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4&gt;Data preparation&lt;/h4&gt;
+&lt;p&gt;We will start by downloading Guppy 4.0.11 basecalls from a PromethION sequencing experiment
+(see our &lt;a href=&quot;/ont-open-datasets/tutorials&quot;&gt;tutorial&lt;/a&gt; FAQs) for more information on downloading data):&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;aws s3 --no-sign-request cp s3://ont-open-data/gm24385_2020.11/analysis/r9.4.1/20201026_1644_2-E5-H5_PAG07162_d7f262d5/guppy_v4.0.11_r9.4.1_hac_prom/basecalls.fastq.gz .&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The &lt;code class=&quot;language-text&quot;&gt;.fastq&lt;/code&gt; file downloaded above contains the QC pass calls from the experiment
+amounting to around 200 Gbases.&lt;/p&gt;
+&lt;p&gt;To run the SV calling pipeline and perform benchmarking we will need release 37
+of the human reference sequence:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;wget http://ftp-trace.ncbi.nih.gov/1000genomes/ftp/technical/reference/human_g1k_v37.fasta.gz&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;Running the variant calling&lt;/h4&gt;
+&lt;p&gt;To perform structural variant calling Oxford Nanopore Technologies recommends using the
+&lt;a href=&quot;&quot;&gt;pipeline-structural-variation&lt;/a&gt; snakemake workflow. After installation of this
+software we use it with its default settings:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;conda activate pipeline-structural-variation-v2
+snakemake call --config input_fastq=basecalls.fastq.gz reference_fasta=human_g1k_v37.fasta threads=76 sample_name=PAG07162-hg37&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The useful output for our purposes is the single Variant Call Format file; a copy
+of the file is available in the dataset S3 bucket at:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;s3://ont-open-data/gm24385_2020.11/extra_analyses/PAG07162-hg37/sv_calls/PAG07162-hg37_cutesv_filtered.vcf.gz&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;Evaluation&lt;/h3&gt;
+&lt;p&gt;The veracity of the variant calling performed above can be obtained by
+comparing the results to the &lt;a href=&quot;https://www.nist.gov/programs-projects/genome-bottle&quot;&gt;Genome In A
+Bottle&lt;/a&gt; truth sets for
+the GM24385 sample. The truth sets can be downloaded from the
+&lt;a href=&quot;https://www.ncbi.nlm.nih.gov/&quot;&gt;NCBI&lt;/a&gt; repository:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;truth_name=&amp;quot;HG002_SVs_Tier1_v0.6&amp;quot;
+for ext in &amp;quot;.vcf.gz&amp;quot;, &amp;quot;.vcf.gz.tbi&amp;quot;, &amp;quot;.bed&amp;quot;; do
+    wget -O $truth_name$ext https://ftp-trace.ncbi.nlm.nih.gov/giab/ftp/data/AshkenazimTrio/analysis/NIST_SVs_Integration_v0.6/$truth_name$ext
+done&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;With these reference data we will use
+&lt;a href=&quot;https://github.com/spiralgenetics/truvari&quot;&gt;truvari&lt;/a&gt; to assess the recall and precision
+of the variant calls made by the calling pipeline:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;truth_vcf=&amp;quot;${truth_name}.vcf.gz&amp;quot;
+truth_bed=&amp;quot;${truth_name}.bed&amp;quot;
+reference=&amp;quot;human_g1k_v37.fasta&amp;quot;
+input_vcf=&amp;quot;PAG07162-hg37_cutesv_filtered.vcf.gz&amp;quot;
+output_dir=&amp;quot;truvari&amp;quot;
+truvari bench --passonly -b $truth_vcf --includebed $truth_bed --pctsim 0 -c $input_vcf -f $reference -o $output_dir&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Truvari outputs precision and recall figures for the structural variants.
+With a little work (detailed in the &lt;a href=&quot;&quot;&gt;EPI2MELabs Structural Variation Benchmarking&lt;/a&gt; tutorial)
+we can separate the counts for deletion and insertion (including duplication) variants:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Type&lt;/th&gt;
+&lt;th&gt;Deletions&lt;/th&gt;
+&lt;th&gt;Insertions&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Recall&lt;/td&gt;
+&lt;td&gt;0.9667&lt;/td&gt;
+&lt;td&gt;0.9427&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Precision&lt;/td&gt;
+&lt;td&gt;0.9893&lt;/td&gt;
+&lt;td&gt;0.9667&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;f1-score&lt;/td&gt;
+&lt;td&gt;0.9779&lt;/td&gt;
+&lt;td&gt;0.9545&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;With still a little more work we can produce the following depicting the
+f1-score alongwith counts of SVs in the truthset:&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 575px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/ont-open-datasets/static/f00bf98e186472966218d2ca1be133f2/59415/sv_f1.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 54.05405405405405%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAAsSAAALEgHS3X78AAABq0lEQVQoz2WSS0/DMBCE85f5Uxw5ceaOCheEOAGiTdqkeT+a5mE7w84mKQUsWbHj9efZ2fWmaUKe52jrGhhHuL7HNAy/pq0bNEmOqW3n8zWu6+BOJ0Bi2qqCMQYegWVZopQfHM45nZZfOeO5MRZ+VMDJo85aOAFaQvkAhciohTEIWIFJkigUC2AdXDtnFb7LWhjdu8s5lfEB3qhEUCNqvaIoNOVqUdhLKr7vIwgCdLLmMNbhxS8wilKOVpQxJpQYI0qxAM/nMzyq46wX6aMEHI9HxHGscNGJfrTYfKYK5r4T7xiTpKk8YvRe0zTKUCAVrsBfKeveySWHx48ZOF2nfBVPhbTNo8wsy2YPl6JY8YWTawKo8OEtwiApT2vRlnONESgFMTtvpf9V+KN0wijK7p4Drfqs+38c79PbC5AqrVzkK+wnfvtB2sMaJFWLm9snbJO51zqp7nCJM2KFVdsuCrmgqfvDAamAsyzHIYyQFSW+/AC7uMD95h2v20T2e6R5KbEhMoGwMGEUacso8LoIVLN6Qo/YlzErHoXoTxXSOMJ+Hyxe26VPZz/X8Q2bLVWue3QIYQAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;sv_length_f1&quot;
+        title=&quot;Structural variation calling f1-score&quot;
+        src=&quot;/ont-open-datasets/static/f00bf98e186472966218d2ca1be133f2/59415/sv_f1.png&quot;
+        srcset=&quot;/ont-open-datasets/static/f00bf98e186472966218d2ca1be133f2/12f09/sv_f1.png 148w,
+/ont-open-datasets/static/f00bf98e186472966218d2ca1be133f2/e4a3f/sv_f1.png 295w,
+/ont-open-datasets/static/f00bf98e186472966218d2ca1be133f2/59415/sv_f1.png 575w&quot;
+        sizes=&quot;(max-width: 575px) 100vw, 575px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Small variant calling with GM24385]]></title><description><![CDATA[In this blog post we will explore small variant calling using the previously
 released HG002 (GM24385 Ashkenazi Son) data release. The GM…]]></description><link>https://nanoporetech.github.io/ont-open-datasets/gm24385_snp/</link><guid isPermaLink="false">https://nanoporetech.github.io/ont-open-datasets/gm24385_snp/</guid><pubDate>Thu, 15 Oct 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;In this blog post we will explore small variant calling using the &lt;a href=&quot;/ont-open-datasets/gm24385_2020.09&quot;&gt;previously
 released&lt;/a&gt; HG002 (GM24385 Ashkenazi Son) data release.&lt;/p&gt;
 &lt;p&gt;The GM24385 dataset comprises whole genome sequencing of a well-characterised
