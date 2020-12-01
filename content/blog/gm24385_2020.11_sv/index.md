@@ -55,9 +55,15 @@ of the human reference sequence:
 
 #### Running the variant calling
 
-To perform structural variant calling Oxford Nanopore Technologies recommends using the
-[pipeline-structural-variation]() snakemake workflow. After installation of this 
-software we use it with its default settings:
+To perform structural variant calling Oxford Nanopore Technologies recommends
+using the
+[pipeline-structural-variation](https://github.com/nanoporetech/pipeline-structural-variation)
+snakemake workflow.  This workflow as been recently updated to use
+[lra](https://github.com/ChaissonLab/LRA) and
+[cuteSV](https://github.com/tjiangHIT/cuteSV), replacing the previous
+[minimap2](https://github.com/lh3/minimap2) and
+[sniffles](https://github.com/fritzsedlazeck/Sniffles) based approach. After
+installation of this software we use it with its default settings:
 
     conda activate pipeline-structural-variation-v2
     snakemake call --config \
