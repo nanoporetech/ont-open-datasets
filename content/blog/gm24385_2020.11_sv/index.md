@@ -87,7 +87,7 @@ of the variant calls made by the calling pipeline:
     truvari bench --passonly -b $truth_vcf --includebed $truth_bed --pctsim 0 -c $input_vcf -f $reference -o $output_dir
 
 Truvari outputs precision and recall figures for the structural variants.
-With a little work (detailed in the [EPI2MELabs Structural Variation Benchmarking]() tutorial)
+With a little work (detailed in the [EPI2MELabs Structural Variation Benchmarking](https://epi2me-labs.github.io/) tutorial)
 we can separate the counts for deletion and insertion (including duplication) variants:
 
 |     Type        |     Deletions   |   Insertions    |
