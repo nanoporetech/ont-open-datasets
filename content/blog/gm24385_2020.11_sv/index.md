@@ -1,6 +1,6 @@
 ---
 title: Structural variation calling with GM24385
-date: "2020-10-15T00:00:00.000Z"
+date: "2020-12-01T16:02:00.000Z"
 description: "Structural variation calling with GM24385 (GIAB HG002) and the 2020.09 dataset"
 tags:
   - datasets
