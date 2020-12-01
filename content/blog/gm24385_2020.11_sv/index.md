@@ -1,5 +1,5 @@
 ---
-title: Structural variatioon calling with GM24385
+title: Structural variation calling with GM24385
 date: "2020-10-15T00:00:00.000Z"
 description: "Structural variation calling with GM24385 (GIAB HG002) and the 2020.09 dataset"
 tags:
@@ -26,7 +26,7 @@ GM24385 2020.11 data release.
 
 > *This walkthrough assumes some familiarity with standard bioinformatic tools
 > for handling genomics data. A working installation of
-> [samtools](http://www.htslib.org/), (snakemake)[https://snakemake.readthedocs.io/en/stable/],
+> [samtools](http://www.htslib.org/), [snakemake](https://snakemake.readthedocs.io/en/stable/),
 > [git](https://git-scm.com/), and the [AWS command-line
 > tools](https://aws.amazon.com/cli/) are required to follow the process
 > below.*
