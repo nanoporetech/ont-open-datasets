@@ -5,11 +5,11 @@ jobs:
     name: Build pages with gatsby
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout master branch
+      - name: Checkout main branch
         uses: actions/checkout@v2
         with:
-          ref: master
-          path: master
+          ref: main
+          path: main
       - name: Checkout gh-pages branch
         uses: actions/checkout@v2
         with:
@@ -22,18 +22,18 @@ jobs:
       - name: Install deps
         run: |
           npm install -g gatsby-cli
-          cd master
+          cd main
           npm i
       - name: Build site
         run: |
-          cd master
+          cd main
           gatsby build --prefix-paths
       - name: Clean gh-pages
         run: |
           rm -r gh-pages/*
       - name: Copy files
         run: |
-          cp -r master/public/* gh-pages/
+          cp -r main/public/* gh-pages/
       - name: Commit updated site static build
         run: |
           cd gh-pages
